@@ -1,14 +1,11 @@
 /*******************************************************************************/
 /*******************************************************************************/
-/***** Forest Trimble,                   ***************************************/
-/***** David Vorick,                     ***************************************/
-/***** Scott Todd                        ***************************************/
-/***** {trimbf,voricd,todds}@rpi.edu     ***************************************/
-/***** Assignment 4:                     ***************************************/
+/***** Forest Trimble                    ***************************************/
+/***** trimbf@rpi.edu                    ***************************************/
+/***** Assignment 3:                     ***************************************/
 /*****   MPI Matrix Multiply and         ***************************************/
-/*****   Performance Analysis with       ***************************************/
-/*****   multithreading                  ***************************************/
-/***** Due: April 9, 2013                ***************************************/
+/*****   Performance Analysis            ***************************************/
+/***** Due: March 19, 2013               ***************************************/
 /*******************************************************************************/
 /*******************************************************************************/
 
@@ -24,12 +21,17 @@ double **A = NULL;
 double **B = NULL;
 double **B_recv = NULL;
 double **C = NULL;
+
+#ifdef QUICK
+unsigned int matrix_size=1024;
+#else 
 unsigned int matrix_size=8192;
+#endif 
 
 unsigned long rng_init_seeds[6]={0x0, 0x123, 0x234, 0x345, 0x456, 0x789};
 unsigned long rng_init_length=6;
 
-#ifdef DEBUG_MODE
+#ifdef KRATOS
 double clock_rate=2666700000.0; 
 #else /* Using Blue Gene/Q */
 double clock_rate=1600000000.0; 
@@ -176,20 +178,31 @@ int main(int argc, char *argv[]) {
   performReduces(&commTime, data[1], numtasks);
   performReduces(&mmTime, data[2], numtasks);
   
+  // bandwidth = bytes / time
   for ( i = 0; i < 3; ++i ) 
     data[1][i] = 
       matrix_size*matrix_size*(numtasks-1)*sizeof(double)/numtasks/data[1][i];
 
   // node 0 performs output
   if ( taskid == 0 ) {
+    // only outputs the full chunk in the 
+    // smaller matrix size.
+#ifdef QUICK
+    for ( i = 0; i < matrix_size/numtasks; ++i ) {
+      for ( j = 0; j < matrix_size; ++j )
+	printf("%e ",C[i][j]);
+      printf("\n");
+    }
+#elif defined KRATOS
     FILE **dataFiles;
     dataFiles = (FILE **)calloc(9,sizeof(FILE *));
+#endif
 
+    // doesn't print data to a file if quick is defined
+#ifndef QUICK
     for ( i = 0; i < 9; ++i ) {
-      /* We would simply call a printf on Blue Gene   *
-       * printf("%d %e\n\n",numtasks,data[i/3][i%3]); */
-
-      /* This is something that does not work on Blue Gene -  *
+#ifdef KRATOS
+      /* This is something that did not work on Blue Gene -   *
        * it seems that creating files is not acceptable here. *
        * To compensate for this, I have created a shell       *
        * called getdata.sh, which takes this output and       *
@@ -198,9 +211,16 @@ int main(int argc, char *argv[]) {
       openFiles(&dataFiles[i],i/3,i%3);
       fprintf(dataFiles[i],"%d %e\n",numtasks,data[i/3][i%3]);
       fclose(dataFiles[i]);
+#else 
+      /* We simply call a printf on Blue Gene */
+      printf("%d %e\n\n",numtasks,data[i/3][i%3]); 
+#endif
     }
+#endif 
 
+#if defined KRATOS && !defined QUICK
     free(dataFiles);
+#endif
   }
 
   /* frees up the memory allocated for our arrays. *
