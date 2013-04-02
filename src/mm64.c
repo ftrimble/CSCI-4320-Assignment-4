@@ -28,6 +28,8 @@ unsigned int matrix_size=1024;
 unsigned int matrix_size=8192;
 #endif 
 
+unsigned int total_threads = 64;
+
 unsigned long rng_init_seeds[6]={0x0, 0x123, 0x234, 0x345, 0x456, 0x789};
 unsigned long rng_init_length=6;
 
@@ -83,6 +85,19 @@ void openFiles(FILE **file, int i, int j) {
   *file = fopen(fileName,"a");
 }
 
+void * pthread_multiply(void * args) {
+  // note funky math due to B in column major order
+  for ( i = 0; i < matrix_size/numtasks; ++i ) {
+    for ( j = 0; j < matrix_size/numtasks; ++j ) {
+for ( k = 0; k < matrix_size; ++k ) {
+  int sourceCol = taskid - block;
+  if ( sourceCol < 0 ) sourceCol += numtasks;
+	  C[i][j + sourceCol*matrix_size/numtasks] += A[i][k]*B[j][k];
+	}
+      }
+    }
+}
+
 int main(int argc, char *argv[]) {
   int i, j, k,
     block = 0,                                           
@@ -123,6 +138,10 @@ int main(int argc, char *argv[]) {
     }
   }
 
+	// Generate pthreads
+	int numPthreads = total_threads / numtasks;
+	pthread_t threads[numPthreads];
+
   // now perform multiply and sends
   while ( block < numtasks ) { 
     /* sends out B buffer and receives to a second *
@@ -140,19 +159,16 @@ int main(int argc, char *argv[]) {
       commTime += rdtsc() - commStart;
     }
 
+		int z;
     mmStart = rdtsc();
-    // note funky math due to B in column major order
-    for ( i = 0; i < matrix_size/numtasks; ++i ) {
-      for ( j = 0; j < matrix_size/numtasks; ++j ) {
-	for ( k = 0; k < matrix_size; ++k ) {
-	  int sourceCol = taskid - block;
-	  if ( sourceCol < 0 ) sourceCol += numtasks;
+		for(z = 0; z < total_threads; z++)
+			if(pthread_create(&threads[z], NULL, &pthread_multiply, NULL))
+				printf("Thread creation failed\n");
+		for(z = 0; z < total_threads; z++)
+			if(pthread_join(thr, NULL))
+				printf("Thread joining failed\n");
 
-	  C[i][j + sourceCol*matrix_size/numtasks] += A[i][k]*B[j][k];
-	}
-      }
-    }
-    mmTime += rdtsc()- mmStart;
+    mmTime += rdtsc() - mmStart;
 
     commStart = rdtsc();
     /* wait for isend/irecv to complete, as we can't *
