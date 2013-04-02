@@ -12,14 +12,16 @@
 ###############################################################################
 ###############################################################################
 
-SOURCES=mm.c
+SOURCES=src/mm.c
 OUTPUT=mm_threaded
 DEBUG=-Wall -DDEBUG_MODE
 KRATOS=-DKRATOS
 BLUE=-DBLUE
 QUICK=-DQUICK
 OPT=-O7
-REPORT=findings
+REPORT=findings.aux \
+       findings.log \
+       findings.pdf
 
 blue:
 	mpicc -O3 $(SOURCES) $(BLUE) -o $(OUTPUT)
@@ -30,4 +32,4 @@ quick:
 debug:
 	mpicc $(DEBUG) $(KRATOS) $(SOURCES) -o $(OUTPUT)
 clean:
-	rm *~ $(OUTPUT) findings.aux findings.log findings.pdf
+	rm *~ $(OUTPUT) $(REPORT)
