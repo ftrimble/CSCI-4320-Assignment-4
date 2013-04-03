@@ -29,11 +29,11 @@ int taskid, numtasks, // MPI info
 	numThreads,					// Pthread count
   block = 0;          // How many chunks we have done
 
-#ifdef QUICK
-unsigned int matrix_size=384;
-unsigned int total_threads = 24;
+#ifdef KRATOS
+unsigned int matrix_size = 512;
+unsigned int total_threads = 8;
 #else
-unsigned int matrix_size=1024;
+unsigned int matrix_size = 1024;
 unsigned int total_threads = 64;
 #endif
 
@@ -64,8 +64,11 @@ void * pthread_multiply(void * args) {
     sourceCol,
 		start, end;
 
-	start = taskid * (matrix_size/numtasks/numThreads);
-	end = taskid * (matrix_size/numtasks/numThreads) + (matrix_size/numtasks/numThreads);
+  int current_thread = (int)args;
+  start = taskid * (matrix_size/numtasks/numThreads) + current_thread * (matrix_size/numtasks/numThreads);
+  end = taskid * (matrix_size/numtasks/numThreads) + (matrix_size/numtasks/numThreads) current_thread * (matrix_size/numtasks/numThreads);
+
+printf("%i: starting multiply: %i-%i \n", taskid, start, end);
 
   // note funky math due to B in column major order
   for ( i = start; i < end; ++i ) {
@@ -77,9 +80,12 @@ void * pthread_multiply(void * args) {
       }
     }
   }
+printf("%i: ending multiply: %i-%i \n", taskid, start, end);
 }
 
 int main(int argc, char *argv[]) {
+  printf("Main Started!\n");
+
   int i, j;               // Indeces
   double **tmp,           // Swaps B and B_temp
     execTime, execMax;    // For reporting data
@@ -90,6 +96,8 @@ int main(int argc, char *argv[]) {
   MPI_Init(&argc,&argv);
   MPI_Comm_rank(MPI_COMM_WORLD, &taskid);
   MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
+
+  printf("MPI Initialized\n");
 
   execTime = rdtsc();
   
@@ -112,6 +120,8 @@ int main(int argc, char *argv[]) {
    * in column major order. That is, our math will look a little      *
    * funky, becuase access will be reversed in A,C vs. B.             */
 
+printf("Initializing Array!\n");
+
   // fills A, B with random numbers.
   for ( i = 0; i < matrix_size/numtasks; ++i ) {
     for ( j = 0; j < matrix_size; ++j ) {
@@ -120,8 +130,11 @@ int main(int argc, char *argv[]) {
     }
   }
 
+printf("random numbers filled\n");
+
   // now perform multiply and sends
   while ( block < numtasks ) { 
+printf("block: %i\n", block);
     /* sends out B buffer and receives to a second *
      * buffer. note that the final iteration just  *
      * does math; it does not send anything.       */
@@ -137,7 +150,7 @@ int main(int argc, char *argv[]) {
 
     // threads out the matrix multiplication
     for(i = 0; i < numThreads; i++) 
-      if( pthread_create(&threads[i], NULL, &pthread_multiply, NULL) )
+      if( pthread_create(&threads[i], NULL, &pthread_multiply, (void *)i) )
 	printf("Thread creation failed\n");
 
     // joins the threads back together
