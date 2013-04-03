@@ -1,0 +1,6 @@
+plots/*
+data/*
+findings.*
+!findings.tex
+*~
+mm_threaded
