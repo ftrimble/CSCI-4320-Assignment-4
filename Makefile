@@ -13,7 +13,7 @@
 ###############################################################################
 
 SOURCES=src/mm.c
-OUTPUT=-o mm_threaded
+OUTPUT=mm_threaded
 DEBUG=-Wall -DDEBUG_MODE
 KRATOS=-DKRATOS
 BLUE=-O3 -DBLUE
@@ -24,12 +24,12 @@ REPORT=findings.aux \
        findings.pdf
 
 blue:
-	mpicc $(SOURCES) $(BLUE) $(OUTPUT)
+	mpicc $(SOURCES) $(BLUE) -o $(OUTPUT)
 kratos:
-	mpicc $(OPT) $(SOURCES) $(KRATOS) $(OUTPUT)
+	mpicc $(OPT) $(SOURCES) $(KRATOS) -o $(OUTPUT)
 quick:
-	mpicc $(OPT) $(SOURCES) $(KRATOS) $(QUICK) $(OUTPUT)
+	mpicc $(OPT) $(SOURCES) $(KRATOS) $(QUICK) -o $(OUTPUT)
 debug:
-	mpicc $(DEBUG) $(KRATOS) $(SOURCES) $(OUTPUT)
+	mpicc $(DEBUG) $(KRATOS) $(SOURCES) -o $(OUTPUT)
 clean:
 	rm *~ $(OUTPUT) $(REPORT)

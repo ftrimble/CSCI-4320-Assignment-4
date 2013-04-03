@@ -30,8 +30,8 @@ int taskid, numtasks, // MPI info
   block = 0;          // How many chunks we have done
 
 #ifdef KRATOS
-unsigned int matrix_size=384;
-unsigned int total_threads = 24;
+unsigned int matrix_size = 512;
+unsigned int total_threads = 8;
 double clock_rate=2666700000.0; 
 #else /* Using Blue Gene/Q */
 unsigned int matrix_size=1024;
@@ -94,9 +94,11 @@ void * pthread_multiply(void * args) {
     sourceCol,
     start, end;
 
-  start = taskid * (matrix_size/numtasks/numThreads);
-  end = taskid * (matrix_size/numtasks/numThreads) + 
-    (matrix_size/numtasks/numThreads);
+  int current_thread = (int)args;
+  start = current_thread * (matrix_size/numtasks/numThreads);
+  end = start + (matrix_size/numtasks/numThreads);
+    
+  printf("%i: starting multiply: %i-%i \n", taskid, start, end);
 
   // note funky math due to B in column major order
   for ( i = start; i < end; ++i ) {
@@ -108,6 +110,8 @@ void * pthread_multiply(void * args) {
       }
     }
   }
+
+  printf("%i: ending multiply: %i-%i \n", taskid, start, end);
 }
 
 int main(int argc, char *argv[]) {
@@ -120,10 +124,14 @@ int main(int argc, char *argv[]) {
   MPI_Request send, recv;       // Need these to check...
   MPI_Status stat;              // ...status of send/recv
   pthread_t *threads;           // Array of threads
- 
+
+  printf("Main Started!\n");
+
   MPI_Init(&argc,&argv);
   MPI_Comm_rank(MPI_COMM_WORLD, &taskid);
   MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
+
+  printf("MPI Initialized\n");
 
   execTime = rdtsc();
   
@@ -146,6 +154,8 @@ int main(int argc, char *argv[]) {
    * in column major order. That is, our math will look a little      *
    * funky, becuase access will be reversed in A,C vs. B.             */
 
+  printf("Initializing Array!\n");
+
   // fills A, B with random numbers.
   for ( i = 0; i < matrix_size/numtasks; ++i ) {
     for ( j = 0; j < matrix_size; ++j ) {
@@ -154,8 +164,11 @@ int main(int argc, char *argv[]) {
     }
   }
 
+  printf("random numbers filled\n");
+
   // now perform multiply and sends
   while ( block < numtasks ) { 
+    printf("block: %i\n", block);
     /* sends out B buffer and receives to a second *
      * buffer. note that the final iteration just  *
      * does math; it does not send anything.       */
@@ -174,7 +187,7 @@ int main(int argc, char *argv[]) {
     mmStart = rdtsc();
     // threads out the matrix multiplication
     for(i = 0; i < numThreads; i++) 
-      if( pthread_create(&threads[i], NULL, &pthread_multiply, NULL) )
+      if( pthread_create(&threads[i], NULL, &pthread_multiply, (void *)i) )
 	printf("Thread creation failed\n");
     mmTime += rdtsc()- mmStart;
 
@@ -234,18 +247,18 @@ int main(int argc, char *argv[]) {
 #endif // KRATOS
   }
   
-    /* frees up the memory allocated for our arrays. *
-     * recall that the array was initiated in one    *
-     * contiguous chunk, so one call to free should  *
-     * deallocate the whole underlying structure.    */
-    free(&A[0][0]);                            free(A);
-    free(&B[0][0]);                            free(B);
-    free(&B_recv[0][0]);                  free(B_recv);
-    free(&C[0][0]);                            free(C);
+  /* frees up the memory allocated for our arrays. *
+   * recall that the array was initiated in one    *
+   * contiguous chunk, so one call to free should  *
+   * deallocate the whole underlying structure.    */
+  free(&A[0][0]);                            free(A);
+  free(&B[0][0]);                            free(B);
+  free(&B_recv[0][0]);                  free(B_recv);
+  free(&C[0][0]);                            free(C);
 
-    free(threads);
+  free(threads);
 
-    MPI_Finalize();
+  MPI_Finalize();
 
-    return 0;
-  }
+  return 0;
+}
