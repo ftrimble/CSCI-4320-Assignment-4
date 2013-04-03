@@ -26,6 +26,7 @@ double **B_recv = NULL;
 double **C = NULL;
 
 int taskid, numtasks, // MPI info
+	numThreads,					// Pthread count
   block = 0;          // How many chunks we have done
 
 #ifdef QUICK
@@ -60,10 +61,14 @@ double ** alloc2dcontiguous(int rows, int cols) {
 
 void * pthread_multiply(void * args) {
   int i, j, k, 
-    sourceCol;
+    sourceCol,
+		start, end;
+
+	start = taskid * (matrix_size/numtasks/numThreads);
+	end = taskid * (matrix_size/numtasks/numThreads) + (matrix_size/numtasks/numThreads);
 
   // note funky math due to B in column major order
-  for ( i = 0; i < matrix_size/numtasks; ++i ) {
+  for ( i = start; i < end; ++i ) {
     for ( j = 0; j < matrix_size/numtasks; ++j ) {
       for ( k = 0; k < matrix_size; ++k ) {
 	sourceCol = taskid - block;
@@ -75,8 +80,7 @@ void * pthread_multiply(void * args) {
 }
 
 int main(int argc, char *argv[]) {
-  int i, j,               // Indeces
-    numThreads;           // Pthread info
+  int i, j;               // Indeces
   double **tmp,           // Swaps B and B_temp
     execTime, execMax;    // For reporting data
   MPI_Request send, recv; // Need these to check...
