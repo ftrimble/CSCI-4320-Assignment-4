@@ -1,0 +1,221 @@
+Main Started!
+Main Started!
+MPI Initialized
+MPI Initialized
+Initializing Array!
+Initializing Array!
+random numbers filled
+random numbers filled
+block: 0
+block: 0
+0: starting multiply: 0-16 
+1: starting multiply: 0-16 
+0: starting multiply: 16-32 
+1: starting multiply: 16-32 
+0: starting multiply: 32-48 
+1: starting multiply: 32-48 
+0: starting multiply: 48-64 
+1: starting multiply: 48-64 
+0: starting multiply: 64-80 
+1: starting multiply: 64-80 
+0: starting multiply: 80-96 
+1: starting multiply: 80-96 
+0: starting multiply: 96-112 
+1: starting multiply: 96-112 
+0: starting multiply: 112-128 
+1: starting multiply: 112-128 
+0: starting multiply: 128-144 
+1: starting multiply: 128-144 
+0: starting multiply: 144-160 
+1: starting multiply: 144-160 
+0: starting multiply: 160-176 
+1: starting multiply: 160-176 
+0: starting multiply: 176-192 
+1: starting multiply: 176-192 
+0: starting multiply: 192-208 
+1: starting multiply: 192-208 
+0: starting multiply: 208-224 
+1: starting multiply: 208-224 
+0: starting multiply: 224-240 
+1: starting multiply: 224-240 
+0: starting multiply: 240-256 
+1: starting multiply: 240-256 
+0: starting multiply: 256-272 
+1: starting multiply: 256-272 
+0: starting multiply: 272-288 
+1: starting multiply: 272-288 
+0: starting multiply: 288-304 
+1: starting multiply: 288-304 
+0: starting multiply: 304-320 
+1: starting multiply: 304-320 
+0: starting multiply: 320-336 
+1: starting multiply: 320-336 
+0: starting multiply: 336-352 
+1: starting multiply: 336-352 
+0: starting multiply: 352-368 
+1: starting multiply: 352-368 
+0: starting multiply: 368-384 
+1: starting multiply: 368-384 
+0: starting multiply: 384-400 
+1: starting multiply: 384-400 
+0: starting multiply: 400-416 
+1: starting multiply: 400-416 
+0: starting multiply: 416-432 
+1: starting multiply: 416-432 
+0: starting multiply: 432-448 
+1: starting multiply: 432-448 
+0: starting multiply: 448-464 
+1: starting multiply: 448-464 
+0: starting multiply: 464-480 
+1: starting multiply: 464-480 
+0: starting multiply: 480-496 
+1: starting multiply: 480-496 
+block: 1
+block: 1
+0: starting multiply: 496-512 
+1: starting multiply: 496-512 
+0: ending multiply: 0-16 
+1: ending multiply: 16-32 
+0: ending multiply: 16-32 
+1: ending multiply: 0-16 
+0: ending multiply: 80-96 
+1: ending multiply: 32-48 
+1: ending multiply: 80-96 
+0: ending multiply: 32-48 
+1: ending multiply: 48-64 
+0: ending multiply: 96-112 
+0: ending multiply: 112-128 
+1: ending multiply: 64-80 
+0: ending multiply: 64-80 
+0: ending multiply: 48-64 
+1: ending multiply: 96-112 
+0: ending multiply: 128-144 
+1: ending multiply: 144-160 
+0: ending multiply: 144-160 
+1: ending multiply: 128-144 
+1: ending multiply: 112-128 
+0: ending multiply: 208-224 
+1: ending multiply: 160-176 
+1: ending multiply: 208-224 
+0: ending multiply: 160-176 
+1: ending multiply: 176-192 
+0: ending multiply: 224-240 
+1: ending multiply: 192-208 
+0: ending multiply: 240-256 
+0: ending multiply: 192-208 
+0: ending multiply: 256-272 
+1: ending multiply: 224-240 
+0: ending multiply: 176-192 
+1: ending multiply: 272-288 
+0: ending multiply: 272-288 
+1: ending multiply: 256-272 
+0: ending multiply: 336-352 
+1: ending multiply: 240-256 
+1: ending multiply: 288-304 
+1: ending multiply: 336-352 
+0: ending multiply: 288-304 
+1: ending multiply: 304-320 
+0: ending multiply: 352-368 
+1: ending multiply: 320-336 
+0: ending multiply: 368-384 
+0: ending multiply: 320-336 
+1: ending multiply: 400-416 
+0: ending multiply: 384-400 
+1: ending multiply: 352-368 
+0: ending multiply: 304-320 
+1: ending multiply: 384-400 
+0: ending multiply: 400-416 
+1: ending multiply: 368-384 
+0: ending multiply: 464-480 
+1: ending multiply: 464-480 
+0: ending multiply: 416-432 
+1: ending multiply: 416-432 
+0: starting multiply: 48-64 
+1: ending multiply: 432-448 
+0: ending multiply: 448-464 
+1: ending multiply: 448-464 
+0: ending multiply: 496-512 
+1: ending multiply: 480-496 
+0: starting multiply: 0-16 
+0: starting multiply: 16-32 
+1: ending multiply: 496-512 
+0: starting multiply: 32-48 
+1: starting multiply: 0-16 
+0: ending multiply: 480-496 
+1: starting multiply: 16-32 
+0: starting multiply: 64-80 
+1: starting multiply: 32-48 
+0: starting multiply: 80-96 
+1: starting multiply: 48-64 
+0: starting multiply: 96-112 
+1: starting multiply: 64-80 
+0: starting multiply: 112-128 
+1: starting multiply: 80-96 
+0: starting multiply: 128-144 
+1: starting multiply: 96-112 
+0: starting multiply: 144-160 
+1: starting multiply: 112-128 
+0: starting multiply: 160-176 
+1: starting multiply: 128-144 
+0: starting multiply: 176-192 
+1: starting multiply: 144-160 
+0: starting multiply: 192-208 
+1: starting multiply: 160-176 
+0: starting multiply: 208-224 
+1: starting multiply: 176-192 
+0: starting multiply: 224-240 
+1: starting multiply: 192-208 
+0: starting multiply: 240-256 
+1: starting multiply: 208-224 
+0: starting multiply: 256-272 
+1: starting multiply: 224-240 
+0: starting multiply: 272-288 
+1: starting multiply: 240-256 
+0: starting multiply: 288-304 
+1: starting multiply: 256-272 
+0: starting multiply: 304-320 
+1: starting multiply: 272-288 
+0: starting multiply: 320-336 
+1: starting multiply: 288-304 
+0: starting multiply: 336-352 
+1: starting multiply: 304-320 
+0: starting multiply: 352-368 
+1: starting multiply: 320-336 
+0: starting multiply: 368-384 
+1: starting multiply: 336-352 
+0: starting multiply: 384-400 
+1: starting multiply: 352-368 
+0: starting multiply: 400-416 
+1: starting multiply: 368-384 
+0: starting multiply: 416-432 
+1: starting multiply: 384-400 
+0: starting multiply: 432-448 
+1: starting multiply: 400-416 
+0: starting multiply: 448-464 
+1: starting multiply: 416-432 
+0: starting multiply: 464-480 
+1: starting multiply: 432-448 
+0: starting multiply: 496-512 
+1: starting multiply: 448-464 
+0: ending multiply: 432-448 
+1: starting multiply: 464-480 
+0: starting multiply: 480-496 
+1: starting multiply: 480-496 
+2 2.791900e-01
+
+2 2.775642e-01
+
+2 2.808157e-01
+
+2 4.599200e+09
+
+2 5.649113e+09
+
+2 3.878385e+09
+
+2 9.359903e-04
+
+2 9.302519e-04
+
+2 9.417288e-04
+
