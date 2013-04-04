@@ -17,7 +17,7 @@ if [ -d "$root/bluegene/output" ]; then
 	$wd/getdata.sh
 
 	# plots the data
-	echo "load $wd/plotscript.p" | gnuplot
+	echo "load '$wd/plotscript.p'" | gnuplot
 
 	# refreshes the writeup
 	pdflatex $root/findings.tex
