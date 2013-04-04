@@ -1,7 +1,7 @@
 /*******************************************************************************/
 /*******************************************************************************/
 /***** Forest Trimble,               *******************************************/
-/***** Scott Todd,	                 *******************************************/
+/***** Scott Todd,                   *******************************************/
 /***** David Vorick                  *******************************************/
 /***** {trimbf,voricd,todds}@rpi.edu *******************************************/
 /***** Assignment 4:                 *******************************************/
@@ -114,7 +114,8 @@ void * pthread_multiply(void * args) {
 }
 
 int main(int argc, char *argv[]) {
-  int i, j;                     // Indeces
+  int i, j,                     // Indeces
+    *thread_args;               // task numbers
   double **tmp,                 // Swaps B and B_temp
     execTime,   
     mmTime = 0, mmStart,        // For reporting data
@@ -144,6 +145,8 @@ int main(int argc, char *argv[]) {
   // allocate memory for our threads
   numThreads = total_threads/numtasks;
   threads = (pthread_t *)calloc(numThreads, sizeof(pthread_t));
+  thread_args = (int *)calloc(numThreads, sizeof(int));
+  for ( i = 0; i < numThreads; ++i ) thread_args[i] = i;
 
   /* Note that we have allocated a chunk of B that must implicitly be *
    * in column major order. That is, our math will look a little      *
@@ -177,7 +180,8 @@ int main(int argc, char *argv[]) {
     mmStart = rdtsc();
     // threads out the matrix multiplication
     for(i = 0; i < numThreads; i++) 
-      if( pthread_create(&threads[i], NULL, &pthread_multiply, (void *)&i) )
+      if( pthread_create(&threads[i], NULL, &pthread_multiply, 
+                         (void *)&thread_args[i]) )
 		printf("Thread creation failed\n");
     mmTime += rdtsc()- mmStart;
 
@@ -250,8 +254,7 @@ int main(int argc, char *argv[]) {
   free(&B[0][0]);                            free(B);
   free(&B_recv[0][0]);                  free(B_recv);
   free(&C[0][0]);                            free(C);
-
-  free(threads);
+  free(threads);                   free(thread_args);
 
   MPI_Finalize();
 
