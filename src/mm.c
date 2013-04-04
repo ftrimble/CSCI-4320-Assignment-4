@@ -237,7 +237,7 @@ int main(int argc, char *argv[]) {
       fprintf(dataFiles[i],"%d %e\n",numtasks,data[i/3][i%3]);
       fclose(dataFiles[i]);
 #else /* We simply call a printf on Blue Gene */
-      printf("%d %e\n\n",numthreads,data[i/3][i%3]); 
+      printf("%d %e\n\n",numThreads,data[i/3][i%3]); 
 #endif
     }
 
