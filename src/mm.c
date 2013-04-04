@@ -98,8 +98,6 @@ void * pthread_multiply(void * args) {
   start = current_thread * (matrix_size/numtasks/numThreads);
   end = start + (matrix_size/numtasks/numThreads);
     
-  printf("%i: starting multiply: %i-%i \n", taskid, start, end);
-
   // note funky math due to B in column major order
   for ( i = start; i < end; ++i ) {
     for ( j = 0; j < matrix_size/numtasks; ++j ) {
@@ -111,7 +109,6 @@ void * pthread_multiply(void * args) {
     }
   }
 
-  printf("%i: ending multiply: %i-%i \n", taskid, start, end);
 }
 
 int main(int argc, char *argv[]) {
@@ -125,13 +122,9 @@ int main(int argc, char *argv[]) {
   MPI_Status stat;              // ...status of send/recv
   pthread_t *threads;           // Array of threads
 
-  printf("Main Started!\n");
-
   MPI_Init(&argc,&argv);
   MPI_Comm_rank(MPI_COMM_WORLD, &taskid);
   MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
-
-  printf("MPI Initialized\n");
 
   execTime = rdtsc();
   
@@ -154,8 +147,6 @@ int main(int argc, char *argv[]) {
    * in column major order. That is, our math will look a little      *
    * funky, becuase access will be reversed in A,C vs. B.             */
 
-  printf("Initializing Array!\n");
-
   // fills A, B with random numbers.
   for ( i = 0; i < matrix_size/numtasks; ++i ) {
     for ( j = 0; j < matrix_size; ++j ) {
@@ -164,11 +155,8 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  printf("random numbers filled\n");
-
   // now perform multiply and sends
   while ( block < numtasks ) { 
-    printf("block: %i\n", block);
     /* sends out B buffer and receives to a second *
      * buffer. note that the final iteration just  *
      * does math; it does not send anything.       */
@@ -221,7 +209,8 @@ int main(int argc, char *argv[]) {
   performReduces(&mmTime, &data[2][0], numtasks);
    
   // bandwidth = bytes / time
-  double numBytes = matrix_size*matrix_size*(numtasks-1)*sizeof(double)/numtasks;
+  double numBytes = 
+    matrix_size*matrix_size*(numtasks-1)*sizeof(double)/numtasks;
   for ( i = 0; i < 3; ++i )
     data[1][i] = numBytes/data[1][i];
   
