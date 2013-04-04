@@ -187,7 +187,9 @@ int main(int argc, char *argv[]) {
     commStart = rdtsc();
     /* wait for isend/irecv to complete, as we can't *
      * do the next set until these have finished     */
-    MPI_Wait(&send,&stat);       MPI_Wait(&recv,&stat);       
+    if ( block < numtasks - 1 ) {
+      MPI_Wait(&send,&stat);       MPI_Wait(&recv,&stat);
+    }
     commTime += rdtsc() - commStart;
     
     /* swaps pointer locations so that we can use B *
