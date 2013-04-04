@@ -17,19 +17,30 @@ OUTPUT=mm_threaded
 DEBUG=-Wall -DDEBUG_MODE
 KRATOS=-DKRATOS
 BLUE=-O3 -DBLUE
-QUICK=-DQUICK
 OPT=-O7
 REPORT=findings.aux \
        findings.log \
        findings.pdf
+GETDATA=kratosscripts/runscript.sh
+MAKEDATA=bluegene/runscript.sh
+
+all: $(OUTPUT)
+kratos: $(REPORT) $(OUTPUT)
+
+mm_threaded: src/mm.c
+	mpicc $(SOURCES) $(OPT) $(KRATOS) -o $(OUTPUT)
+
+findings.aux: findings.pdf
+findings.log: findings.pdf
+findings.pdf: bluegene/output
+	$(GETDATA)
 
 blue:
 	mpicc $(SOURCES) $(BLUE) -o $(OUTPUT)
-kratos:
-	mpicc $(OPT) $(SOURCES) $(KRATOS) -o $(OUTPUT)
-quick:
-	mpicc $(OPT) $(SOURCES) $(KRATOS) $(QUICK) -o $(OUTPUT)
+	$(MAKEDATA)
+
 debug:
-	mpicc $(DEBUG) $(KRATOS) $(SOURCES) -o $(OUTPUT)
+	mpicc $(DEBUG) $(OPT) $(KRATOS) $(SOURCES) -o $(OUTPUT)
+
 clean:
 	rm *~ $(OUTPUT) $(REPORT)

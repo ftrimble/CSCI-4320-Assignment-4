@@ -16,6 +16,7 @@
 #include <stdlib.h>
 #include <unistd.h>
 #include <mpi.h>
+#include <pthread.h>
 
 #include "rdtsc.h"
 #include "MT19937.h"
@@ -94,7 +95,7 @@ void * pthread_multiply(void * args) {
     sourceCol,
     start, end;
 
-  int current_thread = (int)args;
+  int current_thread = *(int *)args;
   start = current_thread * (matrix_size/numtasks/numThreads);
   end = start + (matrix_size/numtasks/numThreads);
     
@@ -108,7 +109,8 @@ void * pthread_multiply(void * args) {
       }
     }
   }
-
+  
+  return NULL;
 }
 
 int main(int argc, char *argv[]) {
@@ -175,7 +177,7 @@ int main(int argc, char *argv[]) {
     mmStart = rdtsc();
     // threads out the matrix multiplication
     for(i = 0; i < numThreads; i++) 
-      if( pthread_create(&threads[i], NULL, &pthread_multiply, (void *)i) )
+      if( pthread_create(&threads[i], NULL, &pthread_multiply, (void *)&i) )
 		printf("Thread creation failed\n");
     mmTime += rdtsc()- mmStart;
 
