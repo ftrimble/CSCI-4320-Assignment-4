@@ -9,5 +9,4 @@ numtasks=$1
 numthreads=$2
 MM=../mm_threaded
 
-echo srun -o $numtasks\by$numthreads.out --partition=small --time=10 --ntasks=$numtasks --overcommit $MM 
-srun -o $numtasks\by$numthreads.out --partition=small --time=10 --ntasks=$numtasks --overcommit $MM 
+srun -o $numthreads\by$numtasks.out --partition=small --ntasks=$numtasks $MM 

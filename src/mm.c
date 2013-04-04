@@ -1,7 +1,7 @@
 /*******************************************************************************/
 /*******************************************************************************/
 /***** Forest Trimble,               *******************************************/
-/***** Scott Todd,		     *******************************************/
+/***** Scott Todd,	                 *******************************************/
 /***** David Vorick                  *******************************************/
 /***** {trimbf,voricd,todds}@rpi.edu *******************************************/
 /***** Assignment 4:                 *******************************************/
@@ -102,9 +102,9 @@ void * pthread_multiply(void * args) {
   for ( i = start; i < end; ++i ) {
     for ( j = 0; j < matrix_size/numtasks; ++j ) {
       for ( k = 0; k < matrix_size; ++k ) {
-	sourceCol = taskid - block;
-	if ( sourceCol < 0 ) sourceCol += numtasks;
-	C[i][j + sourceCol*matrix_size/numtasks] += A[i][k]*B[j][k];
+		sourceCol = taskid - block;
+		if ( sourceCol < 0 ) sourceCol += numtasks;
+		C[i][j + sourceCol*matrix_size/numtasks] += A[i][k]*B[j][k];
       }
     }
   }
@@ -176,19 +176,20 @@ int main(int argc, char *argv[]) {
     // threads out the matrix multiplication
     for(i = 0; i < numThreads; i++) 
       if( pthread_create(&threads[i], NULL, &pthread_multiply, (void *)i) )
-	printf("Thread creation failed\n");
+		printf("Thread creation failed\n");
     mmTime += rdtsc()- mmStart;
 
     // joins the threads back together
     for(i = 0; i < numThreads; i++) 
       if(pthread_join(threads[i], NULL))
-	printf("Thread joining failed\n");
+		printf("Thread joining failed\n");
 
     commStart = rdtsc();
     /* wait for isend/irecv to complete, as we can't *
      * do the next set until these have finished     */
     if ( block < numtasks - 1 ) {
-      MPI_Wait(&send,&stat);       MPI_Wait(&recv,&stat);
+      MPI_Wait(&send,&stat);
+	  MPI_Wait(&recv,&stat);
     }
     commTime += rdtsc() - commStart;
     
@@ -233,9 +234,10 @@ int main(int argc, char *argv[]) {
       printf("%d %e\n\n",numtasks,data[i/3][i%3]); 
 #endif
     }
+
 #ifdef KRATOS
     free(dataFiles);
-#endif // KRATOS
+#endif 
   }
   
   /* frees up the memory allocated for our arrays. *
