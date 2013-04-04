@@ -1,141 +1,8 @@
-Main Started!
-MPI Initialized
-Initializing Array!
-random numbers filled
-block: 0
-0: starting multiply: 0-16 
-0: starting multiply: 400-416 
-0: starting multiply: 784-800 
-0: starting multiply: 48-64 
-0: starting multiply: 64-80 
-0: starting multiply: 80-96 
-0: starting multiply: 96-112 
-0: starting multiply: 112-128 
-0: starting multiply: 128-144 
-0: starting multiply: 144-160 
-0: starting multiply: 160-176 
-0: starting multiply: 176-192 
-0: starting multiply: 192-208 
-0: starting multiply: 208-224 
-0: starting multiply: 224-240 
-0: starting multiply: 240-256 
-0: starting multiply: 256-272 
-0: starting multiply: 272-288 
-0: starting multiply: 288-304 
-0: starting multiply: 304-320 
-0: starting multiply: 320-336 
-0: starting multiply: 336-352 
-0: starting multiply: 352-368 
-0: starting multiply: 368-384 
-0: starting multiply: 384-400 
-0: starting multiply: 16-32 
-0: starting multiply: 416-432 
-0: starting multiply: 432-448 
-0: starting multiply: 448-464 
-0: starting multiply: 464-480 
-0: starting multiply: 480-496 
-0: starting multiply: 496-512 
-0: starting multiply: 512-528 
-0: starting multiply: 528-544 
-0: starting multiply: 544-560 
-0: starting multiply: 560-576 
-0: starting multiply: 576-592 
-0: starting multiply: 592-608 
-0: starting multiply: 608-624 
-0: starting multiply: 624-640 
-0: starting multiply: 640-656 
-0: starting multiply: 656-672 
-0: starting multiply: 672-688 
-0: starting multiply: 688-704 
-0: starting multiply: 704-720 
-0: starting multiply: 720-736 
-0: starting multiply: 736-752 
-0: starting multiply: 752-768 
-0: starting multiply: 768-784 
-0: starting multiply: 32-48 
-0: starting multiply: 800-816 
-0: starting multiply: 816-832 
-0: starting multiply: 832-848 
-0: starting multiply: 848-864 
-0: starting multiply: 864-880 
-0: starting multiply: 880-896 
-0: starting multiply: 896-912 
-0: starting multiply: 912-928 
-0: starting multiply: 928-944 
-0: starting multiply: 944-960 
-0: starting multiply: 960-976 
-0: starting multiply: 976-992 
-0: starting multiply: 992-1008 
-1 2.786018e-01
+1 2.786929e-01
 
-0: starting multiply: 1008-1024 
-0: ending multiply: 64-80 
-0: ending multiply: 96-112 
-0: ending multiply: 80-96 
-0: ending multiply: 48-64 
-0: ending multiply: 112-128 
-0: ending multiply: 784-800 
-0: ending multiply: 400-416 
-0: ending multiply: 160-176 
-0: ending multiply: 128-144 
-0: ending multiply: 224-240 
-0: ending multiply: 176-192 
-0: ending multiply: 144-160 
-0: ending multiply: 192-208 
-0: ending multiply: 320-336 
-0: ending multiply: 352-368 
-0: ending multiply: 336-352 
-0: ending multiply: 0-16 
-0: ending multiply: 208-224 
-0: ending multiply: 272-288 
-0: ending multiply: 304-320 
-0: ending multiply: 240-256 
-0: ending multiply: 368-384 
-0: ending multiply: 416-432 
-0: ending multiply: 16-32 
-0: ending multiply: 288-304 
-0: ending multiply: 384-400 
-0: ending multiply: 480-496 
-0: ending multiply: 432-448 
-0: ending multiply: 576-592 
-0: ending multiply: 608-624 
-0: ending multiply: 592-608 
-0: ending multiply: 448-464 
-0: ending multiply: 256-272 
-0: ending multiply: 528-544 
-0: ending multiply: 560-576 
-0: ending multiply: 464-480 
-0: ending multiply: 624-640 
-0: ending multiply: 496-512 
-0: ending multiply: 672-688 
-0: ending multiply: 640-656 
-0: ending multiply: 688-704 
-0: ending multiply: 736-752 
-0: ending multiply: 656-672 
-0: ending multiply: 832-848 
-0: ending multiply: 544-560 
-0: ending multiply: 864-880 
-0: ending multiply: 848-864 
-0: ending multiply: 704-720 
-0: ending multiply: 512-528 
-0: ending multiply: 816-832 
-0: ending multiply: 880-896 
-0: ending multiply: 720-736 
-0: ending multiply: 752-768 
-0: ending multiply: 928-944 
-0: ending multiply: 896-912 
-0: ending multiply: 944-960 
-0: ending multiply: 992-1008 
-0: ending multiply: 912-928 
-0: ending multiply: 32-48 
-0: ending multiply: 800-816 
-0: ending multiply: 960-976 
-0: ending multiply: 768-784 
-0: ending multiply: 976-992 
-0: ending multiply: 1008-1024 
-1 2.786018e-01
+1 2.786929e-01
 
-1 2.786018e-01
+1 2.786929e-01
 
 1 -0.000000e+00
 
@@ -143,9 +10,9 @@ block: 0
 
 1 -0.000000e+00
 
-1 9.093019e-04
+1 1.288618e-03
 
-1 9.093019e-04
+1 1.288618e-03
 
-1 9.093019e-04
+1 1.288618e-03
 
