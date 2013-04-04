@@ -1,1121 +1,162 @@
-Main Started!
-Main Started!
-Main Started!
-Main Started!
-Main Started!
-Main Started!
-Main Started!
-Main Started!
-MPI Initialized
-MPI Initialized
-MPI Initialized
-MPI Initialized
-MPI Initialized
-Initializing Array!
-Initializing Array!
-Initializing Array!
-Initializing Array!
-MPI Initialized
-Initializing Array!
-MPI Initialized
-Initializing Array!
-MPI Initialized
-Initializing Array!
-Initializing Array!
-random numbers filled
-random numbers filled
-block: 0
-random numbers filled
-7: starting multiply: 0-16 
-random numbers filled
-random numbers filled
-block: 0
-block: 0
-block: 0
-random numbers filled
-2: starting multiply: 0-16 
-block: 0
-0: starting multiply: 0-16 
-7: starting multiply: 16-32 
-6: starting multiply: 0-16 
-random numbers filled
-7: starting multiply: 32-48 
-block: 0
-random numbers filled
-7: starting multiply: 48-64 
-6: starting multiply: 16-32 
-block: 0
-block: 0
-2: starting multiply: 16-32 
-6: starting multiply: 32-48 
-0: starting multiply: 16-32 
-1: starting multiply: 0-16 
-2: starting multiply: 32-48 
-5: starting multiply: 0-16 
-0: starting multiply: 32-48 
-1: starting multiply: 16-32 
-0: starting multiply: 48-64 
-5: starting multiply: 16-32 
-3: starting multiply: 0-16 
-1: starting multiply: 32-48 
-0: starting multiply: 64-80 
-3: starting multiply: 16-32 
-1: starting multiply: 48-64 
-5: starting multiply: 32-48 
-7: starting multiply: 64-80 
-6: starting multiply: 48-64 
-4: starting multiply: 0-16 
-0: starting multiply: 80-96 
-6: starting multiply: 64-80 
-2: starting multiply: 48-64 
-4: starting multiply: 16-32 
-5: starting multiply: 48-64 
-6: starting multiply: 80-96 
-3: starting multiply: 32-48 
-4: starting multiply: 32-48 
-3: starting multiply: 48-64 
-4: starting multiply: 48-64 
-2: starting multiply: 64-80 
-3: starting multiply: 64-80 
-2: starting multiply: 80-96 
-7: starting multiply: 80-96 
-3: starting multiply: 80-96 
-1: starting multiply: 64-80 
-5: starting multiply: 64-80 
-4: starting multiply: 64-80 
-1: starting multiply: 80-96 
-2: starting multiply: 96-112 
-5: starting multiply: 80-96 
-0: starting multiply: 96-112 
-7: starting multiply: 96-112 
-block: 1
-1: starting multiply: 96-112 
-4: starting multiply: 80-96 
-6: starting multiply: 96-112 
-0: starting multiply: 112-128 
-3: starting multiply: 96-112 
-4: starting multiply: 96-112 
-block: 1
-block: 1
-block: 1
-block: 1
-3: starting multiply: 112-128 
-block: 1
-5: starting multiply: 96-112 
-6: starting multiply: 112-128 
-block: 1
-1: starting multiply: 112-128 
-block: 1
-7: starting multiply: 112-128 
-5: starting multiply: 112-128 
-2: starting multiply: 112-128 
-7: ending multiply: 0-16 
-4: starting multiply: 112-128 
-2: ending multiply: 0-16 
-7: ending multiply: 16-32 
-0: ending multiply: 0-16 
-6: ending multiply: 0-16 
-7: ending multiply: 32-48 
-7: ending multiply: 48-64 
-6: ending multiply: 16-32 
-2: ending multiply: 16-32 
-6: ending multiply: 32-48 
-0: ending multiply: 16-32 
-1: ending multiply: 0-16 
-2: ending multiply: 32-48 
-5: ending multiply: 0-16 
-0: ending multiply: 32-48 
-5: ending multiply: 16-32 
-1: ending multiply: 16-32 
-0: ending multiply: 48-64 
-3: ending multiply: 0-16 
-1: ending multiply: 32-48 
-0: ending multiply: 64-80 
-7: ending multiply: 64-80 
-1: ending multiply: 48-64 
-5: ending multiply: 32-48 
-6: ending multiply: 48-64 
-3: ending multiply: 16-32 
-4: ending multiply: 0-16 
-0: ending multiply: 80-96 
-6: ending multiply: 64-80 
-5: ending multiply: 48-64 
-6: ending multiply: 80-96 
-4: ending multiply: 16-32 
-2: ending multiply: 48-64 
-3: ending multiply: 32-48 
-3: ending multiply: 48-64 
-2: ending multiply: 64-80 
-7: ending multiply: 80-96 
-4: ending multiply: 32-48 
-2: ending multiply: 80-96 
-3: ending multiply: 64-80 
-4: ending multiply: 48-64 
-3: ending multiply: 80-96 
-5: ending multiply: 64-80 
-1: ending multiply: 64-80 
-4: ending multiply: 64-80 
-2: ending multiply: 96-112 
-7: ending multiply: 96-112 
-0: ending multiply: 96-112 
-1: ending multiply: 80-96 
-6: ending multiply: 96-112 
-1: ending multiply: 96-112 
-4: ending multiply: 80-96 
-5: ending multiply: 80-96 
-0: ending multiply: 112-128 
-3: ending multiply: 96-112 
-4: ending multiply: 96-112 
-0: starting multiply: 0-16 
-0: starting multiply: 16-32 
-3: ending multiply: 112-128 
-0: starting multiply: 32-48 
-6: ending multiply: 112-128 
-7: ending multiply: 112-128 
-3: starting multiply: 0-16 
-5: ending multiply: 96-112 
-3: starting multiply: 16-32 
-6: starting multiply: 0-16 
-1: ending multiply: 112-128 
-6: starting multiply: 16-32 
-7: starting multiply: 0-16 
-4: ending multiply: 112-128 
-5: ending multiply: 112-128 
-7: starting multiply: 16-32 
-4: starting multiply: 0-16 
-2: ending multiply: 112-128 
-6: starting multiply: 32-48 
-1: starting multiply: 0-16 
-5: starting multiply: 0-16 
-7: starting multiply: 32-48 
-1: starting multiply: 16-32 
-5: starting multiply: 16-32 
-3: starting multiply: 32-48 
-4: starting multiply: 16-32 
-0: starting multiply: 48-64 
-6: starting multiply: 48-64 
-2: starting multiply: 0-16 
-0: starting multiply: 64-80 
-3: starting multiply: 48-64 
-7: starting multiply: 48-64 
-4: starting multiply: 32-48 
-2: starting multiply: 16-32 
-1: starting multiply: 32-48 
-2: starting multiply: 32-48 
-1: starting multiply: 48-64 
-7: starting multiply: 64-80 
-4: starting multiply: 48-64 
-5: starting multiply: 32-48 
-2: starting multiply: 48-64 
-1: starting multiply: 64-80 
-4: starting multiply: 64-80 
-1: starting multiply: 80-96 
-5: starting multiply: 48-64 
-7: starting multiply: 80-96 
-4: starting multiply: 80-96 
-2: starting multiply: 64-80 
-0: starting multiply: 80-96 
-7: starting multiply: 96-112 
-2: starting multiply: 80-96 
-1: starting multiply: 96-112 
-5: starting multiply: 64-80 
-4: starting multiply: 96-112 
-block: 2
-5: starting multiply: 80-96 
-3: starting multiply: 64-80 
-6: starting multiply: 64-80 
-5: starting multiply: 96-112 
-6: starting multiply: 80-96 
-block: 2
-3: starting multiply: 80-96 
-block: 2
-6: starting multiply: 96-112 
-2: starting multiply: 96-112 
-1: starting multiply: 112-128 
-5: starting multiply: 112-128 
-4: starting multiply: 112-128 
-block: 2
-0: starting multiply: 96-112 
-3: starting multiply: 96-112 
-block: 2
-block: 2
-block: 2
-0: starting multiply: 112-128 
-6: starting multiply: 112-128 
-2: starting multiply: 112-128 
-block: 2
-0: ending multiply: 0-16 
-7: starting multiply: 112-128 
-3: starting multiply: 112-128 
-0: ending multiply: 16-32 
-0: ending multiply: 32-48 
-3: ending multiply: 16-32 
-3: ending multiply: 0-16 
-6: ending multiply: 0-16 
-6: ending multiply: 16-32 
-7: ending multiply: 0-16 
-7: ending multiply: 16-32 
-4: ending multiply: 0-16 
-6: ending multiply: 32-48 
-5: ending multiply: 0-16 
-1: ending multiply: 0-16 
-7: ending multiply: 32-48 
-5: ending multiply: 16-32 
-1: ending multiply: 16-32 
-0: ending multiply: 48-64 
-3: ending multiply: 32-48 
-6: ending multiply: 48-64 
-3: ending multiply: 48-64 
-0: ending multiply: 64-80 
-4: ending multiply: 16-32 
-2: ending multiply: 0-16 
-7: ending multiply: 48-64 
-4: ending multiply: 32-48 
-2: ending multiply: 16-32 
-1: ending multiply: 32-48 
-2: ending multiply: 32-48 
-7: ending multiply: 64-80 
-1: ending multiply: 48-64 
-5: ending multiply: 32-48 
-4: ending multiply: 48-64 
-2: ending multiply: 48-64 
-4: ending multiply: 64-80 
-1: ending multiply: 64-80 
-5: ending multiply: 48-64 
-0: ending multiply: 80-96 
-7: ending multiply: 80-96 
-4: ending multiply: 80-96 
-7: ending multiply: 96-112 
-2: ending multiply: 64-80 
-5: ending multiply: 64-80 
-2: ending multiply: 80-96 
-4: ending multiply: 96-112 
-1: ending multiply: 80-96 
-6: ending multiply: 64-80 
-1: ending multiply: 96-112 
-3: ending multiply: 64-80 
-5: ending multiply: 80-96 
-6: ending multiply: 80-96 
-5: ending multiply: 96-112 
-6: ending multiply: 96-112 
-3: ending multiply: 80-96 
-0: ending multiply: 96-112 
-2: ending multiply: 96-112 
-1: ending multiply: 112-128 
-4: ending multiply: 112-128 
-3: ending multiply: 96-112 
-4: starting multiply: 0-16 
-5: ending multiply: 112-128 
-0: ending multiply: 112-128 
-1: starting multiply: 0-16 
-5: starting multiply: 0-16 
-6: ending multiply: 112-128 
-4: starting multiply: 16-32 
-0: starting multiply: 0-16 
-5: starting multiply: 16-32 
-6: starting multiply: 0-16 
-2: ending multiply: 112-128 
-7: ending multiply: 112-128 
-1: starting multiply: 16-32 
-4: starting multiply: 32-48 
-0: starting multiply: 16-32 
-7: starting multiply: 0-16 
-6: starting multiply: 16-32 
-0: starting multiply: 32-48 
-5: starting multiply: 32-48 
-7: starting multiply: 16-32 
-3: ending multiply: 112-128 
-1: starting multiply: 32-48 
-5: starting multiply: 48-64 
-6: starting multiply: 32-48 
-2: starting multiply: 0-16 
-6: starting multiply: 48-64 
-7: starting multiply: 32-48 
-1: starting multiply: 48-64 
-2: starting multiply: 16-32 
-7: starting multiply: 48-64 
-2: starting multiply: 32-48 
-4: starting multiply: 48-64 
-2: starting multiply: 48-64 
-1: starting multiply: 64-80 
-2: starting multiply: 64-80 
-6: starting multiply: 64-80 
-0: starting multiply: 48-64 
-5: starting multiply: 64-80 
-0: starting multiply: 64-80 
-2: starting multiply: 80-96 
-3: starting multiply: 0-16 
-4: starting multiply: 64-80 
-5: starting multiply: 80-96 
-3: starting multiply: 16-32 
-0: starting multiply: 80-96 
-6: starting multiply: 80-96 
-3: starting multiply: 32-48 
-1: starting multiply: 80-96 
-7: starting multiply: 64-80 
-4: starting multiply: 80-96 
-5: starting multiply: 96-112 
-3: starting multiply: 48-64 
-7: starting multiply: 80-96 
-block: 3
-3: starting multiply: 64-80 
-2: starting multiply: 96-112 
-3: starting multiply: 80-96 
-5: starting multiply: 112-128 
-1: starting multiply: 96-112 
-4: starting multiply: 96-112 
-6: starting multiply: 96-112 
-block: 3
-7: starting multiply: 96-112 
-block: 3
-0: starting multiply: 96-112 
-1: starting multiply: 112-128 
-block: 3
-3: starting multiply: 96-112 
-block: 3
-block: 3
-block: 3
-6: starting multiply: 112-128 
-block: 3
-4: starting multiply: 112-128 
-7: starting multiply: 112-128 
-0: starting multiply: 112-128 
-2: starting multiply: 112-128 
-3: starting multiply: 112-128 
-4: ending multiply: 0-16 
-5: ending multiply: 0-16 
-1: ending multiply: 0-16 
-0: ending multiply: 0-16 
-5: ending multiply: 16-32 
-4: ending multiply: 16-32 
-6: ending multiply: 0-16 
-4: ending multiply: 32-48 
-1: ending multiply: 16-32 
-0: ending multiply: 16-32 
-6: ending multiply: 16-32 
-7: ending multiply: 16-32 
-5: ending multiply: 32-48 
-0: ending multiply: 32-48 
-7: ending multiply: 0-16 
-5: ending multiply: 48-64 
-1: ending multiply: 32-48 
-6: ending multiply: 48-64 
-2: ending multiply: 0-16 
-6: ending multiply: 32-48 
-2: ending multiply: 16-32 
-7: ending multiply: 48-64 
-1: ending multiply: 48-64 
-4: ending multiply: 48-64 
-7: ending multiply: 32-48 
-2: ending multiply: 32-48 
-5: ending multiply: 64-80 
-0: ending multiply: 48-64 
-4: ending multiply: 64-80 
-1: ending multiply: 64-80 
-5: ending multiply: 80-96 
-6: ending multiply: 64-80 
-2: ending multiply: 48-64 
-0: ending multiply: 64-80 
-6: ending multiply: 80-96 
-3: ending multiply: 0-16 
-1: ending multiply: 80-96 
-4: ending multiply: 80-96 
-3: ending multiply: 16-32 
-7: ending multiply: 64-80 
-4: ending multiply: 96-112 
-3: ending multiply: 32-48 
-0: ending multiply: 80-96 
-5: ending multiply: 96-112 
-6: ending multiply: 96-112 
-2: ending multiply: 64-80 
-3: ending multiply: 48-64 
-5: ending multiply: 112-128 
-0: ending multiply: 96-112 
-3: ending multiply: 64-80 
-2: ending multiply: 80-96 
-1: ending multiply: 96-112 
-5: starting multiply: 0-16 
-6: ending multiply: 112-128 
-7: ending multiply: 80-96 
-5: starting multiply: 16-32 
-6: starting multiply: 0-16 
-0: ending multiply: 112-128 
-5: starting multiply: 32-48 
-2: ending multiply: 96-112 
-7: ending multiply: 96-112 
-3: ending multiply: 80-96 
-6: starting multiply: 16-32 
-7: ending multiply: 112-128 
-2: ending multiply: 112-128 
-3: ending multiply: 96-112 
-0: starting multiply: 0-16 
-1: ending multiply: 112-128 
-2: starting multiply: 0-16 
-4: ending multiply: 112-128 
-1: starting multiply: 0-16 
-0: starting multiply: 16-32 
-7: starting multiply: 0-16 
-4: starting multiply: 0-16 
-1: starting multiply: 16-32 
-7: starting multiply: 16-32 
-5: starting multiply: 48-64 
-4: starting multiply: 16-32 
-2: starting multiply: 16-32 
-0: starting multiply: 32-48 
-3: ending multiply: 112-128 
-5: starting multiply: 64-80 
-6: starting multiply: 32-48 
-1: starting multiply: 32-48 
-4: starting multiply: 32-48 
-2: starting multiply: 32-48 
-3: starting multiply: 0-16 
-1: starting multiply: 48-64 
-7: starting multiply: 32-48 
-0: starting multiply: 48-64 
-2: starting multiply: 48-64 
-1: starting multiply: 64-80 
-6: starting multiply: 48-64 
-3: starting multiply: 16-32 
-0: starting multiply: 64-80 
-1: starting multiply: 80-96 
-4: starting multiply: 48-64 
-6: starting multiply: 64-80 
-7: starting multiply: 48-64 
-3: starting multiply: 32-48 
-2: starting multiply: 64-80 
-3: starting multiply: 48-64 
-7: starting multiply: 64-80 
-0: starting multiply: 80-96 
-4: starting multiply: 64-80 
-5: starting multiply: 80-96 
-4: starting multiply: 80-96 
-6: starting multiply: 80-96 
-1: starting multiply: 96-112 
-2: starting multiply: 80-96 
-7: starting multiply: 80-96 
-5: starting multiply: 96-112 
-1: starting multiply: 112-128 
-7: starting multiply: 96-112 
-2: starting multiply: 96-112 
-6: starting multiply: 96-112 
-3: starting multiply: 64-80 
-5: starting multiply: 112-128 
-2: starting multiply: 112-128 
-3: starting multiply: 80-96 
-block: 4
-7: starting multiply: 112-128 
-3: starting multiply: 96-112 
-block: 4
-3: starting multiply: 112-128 
-block: 4
-block: 4
-block: 4
-0: starting multiply: 96-112 
-6: starting multiply: 112-128 
-1: starting multiply: 0-16 
-block: 4
-block: 4
-4: starting multiply: 96-112 
-3: starting multiply: 0-16 
-5: ending multiply: 32-48 
-6: ending multiply: 0-16 
-7: starting multiply: 0-16 
-5: starting multiply: 0-16 
-0: starting multiply: 112-128 
-3: starting multiply: 16-32 
-6: ending multiply: 16-32 
-2: starting multiply: 0-16 
-7: starting multiply: 16-32 
-block: 4
-5: starting multiply: 48-64 
-2: starting multiply: 32-48 
-7: starting multiply: 48-64 
-0: ending multiply: 0-16 
-2: starting multiply: 48-64 
-3: starting multiply: 48-64 
-5: starting multiply: 64-80 
-7: starting multiply: 64-80 
-3: starting multiply: 64-80 
-5: starting multiply: 80-96 
-4: starting multiply: 112-128 
-0: ending multiply: 16-32 
-5: starting multiply: 96-112 
-1: starting multiply: 32-48 
-7: starting multiply: 96-112 
-4: ending multiply: 0-16 
-0: ending multiply: 32-48 
-3: starting multiply: 96-112 
-1: starting multiply: 48-64 
-4: ending multiply: 16-32 
-6: ending multiply: 32-48 
-0: ending multiply: 48-64 
-1: starting multiply: 64-80 
-7: starting multiply: 80-96 
-3: starting multiply: 80-96 
-1: starting multiply: 80-96 
-4: ending multiply: 32-48 
-6: ending multiply: 48-64 
-0: ending multiply: 64-80 
-4: ending multiply: 48-64 
-6: ending multiply: 64-80 
-2: starting multiply: 64-80 
-1: starting multiply: 96-112 
-2: starting multiply: 80-96 
-5: starting multiply: 32-48 
-block: 5
-0: ending multiply: 80-96 
-2: starting multiply: 112-128 
-4: ending multiply: 64-80 
-6: ending multiply: 80-96 
-4: ending multiply: 80-96 
-2: starting multiply: 16-32 
-2: starting multiply: 96-112 
-5: ending multiply: 96-112 
-1: ending multiply: 96-112 
-6: ending multiply: 96-112 
-7: ending multiply: 80-96 
-7: ending multiply: 96-112 
-1: ending multiply: 112-128 
-2: ending multiply: 112-128 
-2: ending multiply: 96-112 
-3: ending multiply: 80-96 
-5: ending multiply: 112-128 
-7: ending multiply: 112-128 
-0: ending multiply: 96-112 
-6: ending multiply: 112-128 
-3: ending multiply: 112-128 
-6: starting multiply: 0-16 
-3: ending multiply: 96-112 
-4: ending multiply: 96-112 
-6: starting multiply: 16-32 
-6: starting multiply: 32-48 
-5: ending multiply: 0-16 
-6: starting multiply: 48-64 
-0: ending multiply: 112-128 
-6: starting multiply: 64-80 
-0: starting multiply: 0-16 
-6: starting multiply: 80-96 
-block: 5
-0: starting multiply: 16-32 
-block: 5
-1: starting multiply: 0-16 
-0: starting multiply: 32-48 
-6: starting multiply: 96-112 
-1: starting multiply: 16-32 
-5: ending multiply: 16-32 
-0: starting multiply: 48-64 
-1: starting multiply: 48-64 
-block: 5
-4: ending multiply: 112-128 
-0: starting multiply: 64-80 
-4: starting multiply: 0-16 
-2: ending multiply: 32-48 
-4: starting multiply: 16-32 
-0: starting multiply: 80-96 
-2: ending multiply: 48-64 
-4: starting multiply: 32-48 
-5: ending multiply: 48-64 
-4: starting multiply: 48-64 
-5: ending multiply: 64-80 
-4: starting multiply: 64-80 
-block: 5
-0: starting multiply: 96-112 
-4: starting multiply: 80-96 
-block: 5
-4: starting multiply: 96-112 
-5: starting multiply: 112-128 
-2: ending multiply: 0-16 
-7: starting multiply: 0-16 
-block: 5
-5: starting multiply: 16-32 
-7: starting multiply: 16-32 
-6: starting multiply: 112-128 
-2: ending multiply: 16-32 
-3: ending multiply: 48-64 
-5: ending multiply: 80-96 
-3: ending multiply: 64-80 
-0: starting multiply: 112-128 
-5: ending multiply: 96-112 
-1: ending multiply: 48-64 
-3: ending multiply: 96-112 
-5: ending multiply: 64-80 
-2: ending multiply: 48-64 
-block: 5
-5: ending multiply: 48-64 
-2: ending multiply: 32-48 
-5: ending multiply: 32-48 
-3: ending multiply: 0-16 
-2: ending multiply: 64-80 
-1: ending multiply: 80-96 
-7: starting multiply: 32-48 
-1: starting multiply: 96-112 
-3: starting multiply: 0-16 
-7: starting multiply: 64-80 
-2: ending multiply: 80-96 
-5: ending multiply: 80-96 
-2: ending multiply: 16-32 
-1: starting multiply: 112-128 
-2: starting multiply: 0-16 
-7: starting multiply: 80-96 
-3: starting multiply: 16-32 
-2: starting multiply: 16-32 
-4: starting multiply: 112-128 
-2: starting multiply: 48-64 
-3: starting multiply: 32-48 
-7: starting multiply: 96-112 
-2: starting multiply: 64-80 
-3: starting multiply: 48-64 
-6: ending multiply: 0-16 
-2: starting multiply: 80-96 
-7: starting multiply: 112-128 
-6: ending multiply: 16-32 
-3: starting multiply: 64-80 
-2: starting multiply: 96-112 
-3: starting multiply: 80-96 
-5: ending multiply: 0-16 
-2: starting multiply: 112-128 
-3: starting multiply: 112-128 
-7: ending multiply: 48-64 
-6: ending multiply: 48-64 
-1: ending multiply: 0-16 
-6: ending multiply: 32-48 
-3: ending multiply: 80-96 
-6: ending multiply: 64-80 
-0: ending multiply: 0-16 
-2: ending multiply: 80-96 
-1: ending multiply: 0-16 
-6: ending multiply: 80-96 
-block: 6
-6: ending multiply: 96-112 
-0: ending multiply: 16-32 
-4: ending multiply: 0-16 
-3: starting multiply: 96-112 
-2: starting multiply: 32-48 
-4: ending multiply: 16-32 
-0: ending multiply: 32-48 
-1: starting multiply: 32-48 
-4: ending multiply: 32-48 
-1: ending multiply: 64-80 
-0: ending multiply: 48-64 
-2: ending multiply: 96-112 
-0: ending multiply: 64-80 
-5: ending multiply: 16-32 
-7: ending multiply: 64-80 
-4: ending multiply: 48-64 
-5: starting multiply: 0-16 
-1: ending multiply: 80-96 
-4: ending multiply: 64-80 
-1: ending multiply: 64-80 
-7: ending multiply: 0-16 
-6: ending multiply: 112-128 
-2: ending multiply: 64-80 
-0: ending multiply: 80-96 
-1: ending multiply: 96-112 
-0: ending multiply: 96-112 
-5: starting multiply: 16-32 
-4: ending multiply: 80-96 
-5: starting multiply: 32-48 
-6: starting multiply: 0-16 
-4: ending multiply: 96-112 
-3: ending multiply: 16-32 
-2: ending multiply: 0-16 
-6: starting multiply: 16-32 
-1: ending multiply: 32-48 
-6: starting multiply: 32-48 
-2: starting multiply: 16-32 
-6: starting multiply: 48-64 
-5: starting multiply: 48-64 
-3: ending multiply: 32-48 
-2: starting multiply: 32-48 
-6: starting multiply: 64-80 
-1: starting multiply: 64-80 
-0: ending multiply: 112-128 
-3: ending multiply: 48-64 
-7: ending multiply: 96-112 
-1: ending multiply: 32-48 
-5: starting multiply: 64-80 
-6: starting multiply: 80-96 
-0: starting multiply: 0-16 
-1: ending multiply: 48-64 
-4: ending multiply: 112-128 
-5: starting multiply: 80-96 
-4: starting multiply: 0-16 
-3: ending multiply: 64-80 
-5: starting multiply: 96-112 
-0: starting multiply: 16-32 
-4: starting multiply: 16-32 
-3: ending multiply: 0-16 
-4: starting multiply: 32-48 
-1: starting multiply: 80-96 
-7: starting multiply: 48-64 
-0: starting multiply: 32-48 
-4: starting multiply: 48-64 
-7: ending multiply: 80-96 
-1: ending multiply: 48-64 
-0: starting multiply: 48-64 
-7: ending multiply: 32-48 
-4: starting multiply: 64-80 
-1: ending multiply: 16-32 
-7: ending multiply: 64-80 
-block: 6
-0: starting multiply: 64-80 
-5: starting multiply: 112-128 
-7: ending multiply: 0-16 
-6: starting multiply: 96-112 
-0: starting multiply: 80-96 
-4: starting multiply: 80-96 
-block: 6
-2: starting multiply: 64-80 
-3: ending multiply: 16-32 
-5: starting multiply: 0-16 
-0: starting multiply: 96-112 
-block: 6
-1: starting multiply: 112-128 
-block: 6
-2: starting multiply: 80-96 
-3: starting multiply: 112-128 
-7: ending multiply: 16-32 
-0: starting multiply: 112-128 
-3: starting multiply: 32-48 
-7: ending multiply: 0-16 
-1: starting multiply: 16-32 
-block: 6
-3: ending multiply: 64-80 
-7: starting multiply: 112-128 
-5: starting multiply: 16-32 
-2: starting multiply: 96-112 
-1: ending multiply: 96-112 
-7: starting multiply: 32-48 
-3: ending multiply: 112-128 
-2: starting multiply: 0-16 
-7: ending multiply: 16-32 
-3: ending multiply: 96-112 
-7: ending multiply: 80-96 
-5: starting multiply: 32-48 
-3: ending multiply: 0-16 
-4: starting multiply: 96-112 
-7: ending multiply: 96-112 
-3: ending multiply: 16-32 
-7: ending multiply: 48-64 
-6: starting multiply: 112-128 
-1: ending multiply: 112-128 
-5: starting multiply: 48-64 
-1: ending multiply: 32-48 
-7: ending multiply: 16-32 
-6: ending multiply: 0-16 
-2: starting multiply: 112-128 
-1: ending multiply: 16-32 
-5: starting multiply: 64-80 
-7: ending multiply: 112-128 
-6: ending multiply: 16-32 
-1: ending multiply: 0-16 
-7: ending multiply: 64-80 
-1: ending multiply: 64-80 
-5: starting multiply: 112-128 
-6: ending multiply: 48-64 
-block: 6
-5: starting multiply: 80-96 
-6: ending multiply: 32-48 
-2: ending multiply: 80-96 
-4: starting multiply: 112-128 
-6: ending multiply: 64-80 
-block: 6
-5: ending multiply: 0-16 
-3: ending multiply: 80-96 
-1: ending multiply: 80-96 
-5: ending multiply: 48-64 
-3: ending multiply: 32-48 
-4: ending multiply: 0-16 
-6: ending multiply: 80-96 
-7: ending multiply: 32-48 
-0: starting multiply: 0-16 
-5: ending multiply: 64-80 
-7: ending multiply: 48-64 
-4: ending multiply: 16-32 
-3: ending multiply: 48-64 
-4: ending multiply: 32-48 
-0: starting multiply: 32-48 
-4: ending multiply: 48-64 
-0: starting multiply: 48-64 
-6: ending multiply: 96-112 
-4: ending multiply: 64-80 
-0: starting multiply: 64-80 
-4: ending multiply: 80-96 
-0: starting multiply: 80-96 
-0: ending multiply: 32-48 
-0: starting multiply: 96-112 
-0: ending multiply: 48-64 
-0: ending multiply: 64-80 
-0: ending multiply: 96-112 
-2: ending multiply: 64-80 
-3: ending multiply: 32-48 
-3: starting multiply: 0-16 
-1: ending multiply: 16-32 
-3: starting multiply: 16-32 
-block: 7
-1: starting multiply: 0-16 
-3: starting multiply: 32-48 
-2: starting multiply: 0-16 
-1: starting multiply: 16-32 
-0: ending multiply: 112-128 
-3: starting multiply: 48-64 
-7: ending multiply: 32-48 
-1: starting multiply: 32-48 
-3: starting multiply: 64-80 
-7: starting multiply: 0-16 
-3: starting multiply: 80-96 
-1: starting multiply: 48-64 
-7: starting multiply: 16-32 
-4: ending multiply: 96-112 
-2: ending multiply: 96-112 
-6: ending multiply: 112-128 
-5: ending multiply: 16-32 
-6: starting multiply: 0-16 
-5: ending multiply: 32-48 
-6: starting multiply: 16-32 
-7: starting multiply: 32-48 
-6: starting multiply: 32-48 
-1: starting multiply: 64-80 
-6: starting multiply: 48-64 
-2: ending multiply: 32-48 
-6: starting multiply: 64-80 
-7: starting multiply: 48-64 
-6: starting multiply: 80-96 
-1: starting multiply: 80-96 
-block: 7
-1: starting multiply: 96-112 
-2: ending multiply: 16-32 
-6: starting multiply: 96-112 
-7: starting multiply: 64-80 
-2: starting multiply: 16-32 
-7: starting multiply: 96-112 
-1: starting multiply: 112-128 
-4: ending multiply: 112-128 
-2: starting multiply: 64-80 
-4: starting multiply: 0-16 
-block: 7
-2: starting multiply: 80-96 
-4: starting multiply: 16-32 
-1: starting multiply: 0-16 
-block: 7
-4: starting multiply: 32-48 
-3: starting multiply: 96-112 
-2: starting multiply: 96-112 
-1: starting multiply: 32-48 
-4: starting multiply: 48-64 
-5: ending multiply: 48-64 
-2: starting multiply: 32-48 
-4: starting multiply: 64-80 
-5: ending multiply: 64-80 
-3: starting multiply: 112-128 
-4: starting multiply: 80-96 
-5: ending multiply: 32-48 
-7: starting multiply: 112-128 
-5: starting multiply: 96-112 
-6: starting multiply: 112-128 
-block: 7
-2: ending multiply: 80-96 
-4: starting multiply: 96-112 
-5: ending multiply: 80-96 
-2: ending multiply: 0-16 
-block: 7
-3: starting multiply: 0-16 
-2: ending multiply: 64-80 
-7: starting multiply: 80-96 
-2: ending multiply: 112-128 
-4: starting multiply: 112-128 
-3: starting multiply: 16-32 
-0: starting multiply: 48-64 
-2: ending multiply: 16-32 
-3: starting multiply: 32-48 
-block: 7
-0: starting multiply: 64-80 
-7: starting multiply: 0-16 
-0: starting multiply: 96-112 
-2: ending multiply: 48-64 
-3: starting multiply: 48-64 
-5: ending multiply: 96-112 
-7: starting multiply: 16-32 
-2: starting multiply: 48-64 
-5: ending multiply: 112-128 
-7: starting multiply: 32-48 
-0: starting multiply: 112-128 
-5: ending multiply: 80-96 
-2: ending multiply: 0-16 
-5: ending multiply: 16-32 
-0: ending multiply: 16-32 
-5: ending multiply: 0-16 
-0: ending multiply: 32-48 
-7: starting multiply: 48-64 
-1: ending multiply: 0-16 
-0: starting multiply: 0-16 
-2: ending multiply: 112-128 
-0: ending multiply: 0-16 
-3: ending multiply: 80-96 
-0: starting multiply: 80-96 
-1: ending multiply: 48-64 
-2: ending multiply: 96-112 
-0: ending multiply: 64-80 
-0: starting multiply: 32-48 
-0: ending multiply: 48-64 
-6: ending multiply: 0-16 
-0: starting multiply: 16-32 
-6: ending multiply: 16-32 
-0: ending multiply: 96-112 
-7: ending multiply: 32-48 
-6: ending multiply: 32-48 
-0: ending multiply: 80-96 
-3: ending multiply: 0-16 
-6: ending multiply: 48-64 
-0: ending multiply: 80-96 
-5: ending multiply: 112-128 
-6: ending multiply: 64-80 
-3: starting multiply: 80-96 
-1: ending multiply: 80-96 
-6: ending multiply: 80-96 
-7: ending multiply: 96-112 
-3: starting multiply: 96-112 
-6: ending multiply: 96-112 
-3: starting multiply: 112-128 
-2: ending multiply: 80-96 
-1: ending multiply: 112-128 
-4: ending multiply: 0-16 
-7: ending multiply: 0-16 
-4: ending multiply: 16-32 
-1: ending multiply: 64-80 
-7: starting multiply: 64-80 
-1: starting multiply: 48-64 
-2: ending multiply: 32-48 
-7: starting multiply: 80-96 
-4: ending multiply: 32-48 
-1: starting multiply: 64-80 
-5: ending multiply: 96-112 
-2: starting multiply: 112-128 
-block: 7
-4: ending multiply: 48-64 
-1: starting multiply: 80-96 
-5: starting multiply: 0-16 
-6: ending multiply: 112-128 
-4: ending multiply: 64-80 
-5: starting multiply: 16-32 
-1: starting multiply: 96-112 
-4: ending multiply: 80-96 
-5: starting multiply: 32-48 
-4: ending multiply: 96-112 
-7: starting multiply: 96-112 
-6: starting multiply: 0-16 
-1: starting multiply: 112-128 
-5: starting multiply: 48-64 
-6: starting multiply: 16-32 
-1: starting multiply: 16-32 
-5: starting multiply: 64-80 
-6: starting multiply: 32-48 
-4: ending multiply: 112-128 
-6: starting multiply: 48-64 
-4: starting multiply: 0-16 
-6: starting multiply: 64-80 
-4: starting multiply: 16-32 
-5: starting multiply: 96-112 
-7: starting multiply: 112-128 
-4: starting multiply: 32-48 
-6: starting multiply: 80-96 
-0: ending multiply: 0-16 
-5: starting multiply: 112-128 
-4: starting multiply: 48-64 
-6: starting multiply: 96-112 
-7: ending multiply: 112-128 
-5: starting multiply: 80-96 
-2: ending multiply: 48-64 
-3: ending multiply: 16-32 
-4: starting multiply: 64-80 
-3: ending multiply: 16-32 
-8 3.574472e-01
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+Thread creation failed
+8 7.575770e-02
 
-4: starting multiply: 80-96 
-0: starting multiply: 112-128 
-3: ending multiply: 32-48 
-0: starting multiply: 16-32 
-3: ending multiply: 48-64 
-7: ending multiply: 0-16 
-1: ending multiply: 0-16 
-3: starting multiply: 64-80 
-0: ending multiply: 64-80 
-4: starting multiply: 96-112 
-0: ending multiply: 0-16 
-7: ending multiply: 32-48 
-3: ending multiply: 32-48 
-1: ending multiply: 32-48 
-3: ending multiply: 48-64 
-0: ending multiply: 80-96 
-3: ending multiply: 64-80 
-0: ending multiply: 32-48 
-0: ending multiply: 16-32 
-2: ending multiply: 16-32 
-3: ending multiply: 80-96 
-3: ending multiply: 96-112 
-7: ending multiply: 48-64 
-3: ending multiply: 112-128 
-2: ending multiply: 64-80 
-2: ending multiply: 112-128 
-2: ending multiply: 96-112 
-1: ending multiply: 48-64 
-7: ending multiply: 64-80 
-3: ending multiply: 96-112 
-7: ending multiply: 80-96 
-1: ending multiply: 80-96 
-5: ending multiply: 16-32 
-1: ending multiply: 96-112 
-1: ending multiply: 112-128 
-5: ending multiply: 48-64 
-7: ending multiply: 64-80 
-1: ending multiply: 32-48 
-7: ending multiply: 96-112 
-6: ending multiply: 0-16 
-6: ending multiply: 16-32 
-5: ending multiply: 64-80 
-6: ending multiply: 32-48 
-4: ending multiply: 0-16 
-6: ending multiply: 48-64 
-4: ending multiply: 16-32 
-6: ending multiply: 64-80 
-5: ending multiply: 96-112 
-4: ending multiply: 32-48 
-5: ending multiply: 80-96 
-4: ending multiply: 48-64 
-6: ending multiply: 80-96 
-5: ending multiply: 112-128 
-7: ending multiply: 112-128 
-6: ending multiply: 96-112 
-2: ending multiply: 0-16 
-0: ending multiply: 96-112 
-4: ending multiply: 64-80 
-7: ending multiply: 16-32 
-1: ending multiply: 16-32 
-0: ending multiply: 48-64 
-3: ending multiply: 64-80 
-4: ending multiply: 80-96 
-2: ending multiply: 32-48 
-4: ending multiply: 96-112 
-7: ending multiply: 48-64 
-0: ending multiply: 112-128 
-3: ending multiply: 112-128 
-0: ending multiply: 16-32 
-1: ending multiply: 16-32 
-8 3.340240e-01
+8 7.238511e-02
 
-8 3.796889e-01
+8 7.931235e-02
 
-8 1.197750e+08
+8 1.903403e+09
 
-8 1.033461e+09
+8 4.386918e+09
 
-8 7.074107e+07
+8 7.961117e+08
 
-8 1.516372e-03
+8 3.508565e-02
 
-8 1.077730e-03
+8 2.969197e-02
 
-8 3.739243e-03
+8 4.081935e-02
 
-3: ending multiply: 0-16 
-1: ending multiply: 96-112 
