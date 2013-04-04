@@ -14,21 +14,21 @@
 
 SOURCES=src/mm.c
 OUTPUT=mm_threaded
+BLUEOUTDIR=~/data-sb
 DEBUG=-Wall -DDEBUG_MODE
-KRATOS=-DKRATOS
+KRATOS=-O7 -DKRATOS
 BLUE=-O3 -DBLUE
-OPT=-O7
 REPORT=findings.aux \
        findings.log \
        findings.pdf
 GETDATA=kratosscripts/runscript.sh
-MAKEDATA=bluegene/runscript.sh
+MAKEDATA=sbatch bluegene/batch.slurm
 
 all: $(OUTPUT)
-kratos: $(REPORT) $(OUTPUT)
+kratos: $(OUTPUT) $(REPORT)
 
-mm_threaded: src/mm.c
-	mpicc $(SOURCES) $(OPT) $(KRATOS) -o $(OUTPUT)
+mm_threaded: $(SOURCES)
+	mpicc $(SOURCES) $(KRATOS) -o $(OUTPUT)
 
 findings.aux: findings.pdf
 findings.log: findings.pdf
@@ -36,11 +36,11 @@ findings.pdf: bluegene/output
 	$(GETDATA)
 
 blue:
-	mpicc $(SOURCES) $(BLUE) -o $(OUTPUT)
+	mpicc $(SOURCES) $(BLUE) -o $(BLUEOUTDIR)/$(OUTPUT)
 	$(MAKEDATA)
 
 debug:
-	mpicc $(DEBUG) $(OPT) $(KRATOS) $(SOURCES) -o $(OUTPUT)
+	mpicc $(DEBUG) $(KRATOS) $(SOURCES) -o $(OUTPUT)
 
 clean:
 	rm *~ $(OUTPUT) $(REPORT)
