@@ -28,7 +28,7 @@ all: $(OUTPUT)
 kratos: $(OUTPUT) $(REPORT)
 
 mm_threaded: $(SOURCES)
-	mpicc $(SOURCES) $(KRATOS) -o $(OUTPUT)
+	mpicc -pthread $(SOURCES) $(KRATOS) -o $(OUTPUT)
 
 findings.aux: findings.pdf
 findings.log: findings.pdf

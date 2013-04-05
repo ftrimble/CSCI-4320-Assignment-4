@@ -30,6 +30,9 @@ int taskid, numtasks, // MPI info
   numThreads,         // Pthread count
   block = 0;          // How many chunks we have done
 
+MPI_Request send, recv;       // Need these to check...
+MPI_Status stat;              // ...status of send/recv
+
 #ifdef KRATOS
 unsigned int matrix_size = 512;
 unsigned int total_threads = 8;
@@ -93,24 +96,57 @@ void openFiles(FILE **file, int i, int j) {
 void * pthread_multiply(void * args) {
   int i, j, k, 
     sourceCol,
-    start, end;
+    sourceId = ( taskid == 0 ) ? numtasks-1 : taskid-1,
+    sendId = ( taskid == numtasks - 1 ) ? 0 : taskid + 1,
+    current_thread = *(int *)args,
+    start = current_thread * (matrix_size/numtasks/numThreads),
+    end = start + (matrix_size/numtasks/numThreads);
 
-  int current_thread = *(int *)args;
-  start = current_thread * (matrix_size/numtasks/numThreads);
-  end = start + (matrix_size/numtasks/numThreads);
-    
-  // note funky math due to B in column major order
-  for ( i = start; i < end; ++i ) {
-    for ( j = 0; j < matrix_size/numtasks; ++j ) {
-      for ( k = 0; k < matrix_size; ++k ) {
-		sourceCol = taskid - block;
-		if ( sourceCol < 0 ) sourceCol += numtasks;
-		C[i][j + sourceCol*matrix_size/numtasks] += A[i][k]*B[j][k];
+  // now perform multiply and sends
+  while ( block < numtasks ) { 
+    /* sends out B buffer and receives to a second *
+     * buffer. note that the final iteration just  *
+     * does math; it does not send anything.       */
+    if ( block < numtasks - 1 && current_thread == 0 ) {
+      commStart = rdtsc();
+      MPI_Isend(&B[0][0],matrix_size*matrix_size/numtasks,MPI_DOUBLE,
+		sendId,taskid,MPI_COMM_WORLD,&send);
+      MPI_Irecv(&B_recv[0][0],matrix_size*matrix_size/numtasks,MPI_DOUBLE,
+		sourceId,MPI_ANY_TAG,MPI_COMM_WORLD,&recv);
+      commTime += rdtsc() - commStart;
+    }
+
+    mmStart = rdtsc();
+    // threads out the matrix multiplication
+    // note funky math due to B in column major order
+    for ( i = start; i < end; ++i ) {
+      for ( j = 0; j < matrix_size/numtasks; ++j ) {
+        for ( k = 0; k < matrix_size; ++k ) {
+          sourceCol = taskid - block;
+          if ( sourceCol < 0 ) sourceCol += numtasks;
+          C[i][j + sourceCol*matrix_size/numtasks] += A[i][k]*B[j][k];
+        }
       }
     }
+    mmTime += rdtsc()- mmStart;
+
+
+    commStart = rdtsc();
+    /* wait for isend/irecv to complete, as we can't *
+     * do the next set until these have finished     */
+    if ( block < numtasks - 1 ) {
+      MPI_Wait(&send,&stat);
+	  MPI_Wait(&recv,&stat);
+    }
+    commTime += rdtsc() - commStart;
+    
+    /* swaps pointer locations so that we can use B *
+     * for math and receive data on B_recv without  *
+     * having them interfere with each other.       */
+    tmp = B;         B = B_recv;         B_recv = tmp;
+    
+    if ( current_thread == 0 ) ++block;
   }
-  
-  return NULL;
 }
 
 int main(int argc, char *argv[]) {
@@ -121,8 +157,6 @@ int main(int argc, char *argv[]) {
     mmTime = 0, mmStart,        // For reporting data
     commTime = 0, commStart,    
     data[3][3];                 
-  MPI_Request send, recv;       // Need these to check...
-  MPI_Status stat;              // ...status of send/recv
   pthread_t *threads;           // Array of threads
 
   MPI_Init(&argc,&argv);
@@ -160,53 +194,16 @@ int main(int argc, char *argv[]) {
     }
   }
 
-  // now perform multiply and sends
-  while ( block < numtasks ) { 
-    /* sends out B buffer and receives to a second *
-     * buffer. note that the final iteration just  *
-     * does math; it does not send anything.       */
-    if ( block < numtasks - 1 ) {
-      int sourceId = ( taskid == 0 ) ? numtasks-1 : taskid-1,
-	sendId = ( taskid == numtasks - 1 ) ? 0 : taskid + 1;
-
-      commStart = rdtsc();
-      MPI_Isend(&B[0][0],matrix_size*matrix_size/numtasks,MPI_DOUBLE,
-		sendId,taskid,MPI_COMM_WORLD,&send);
-      MPI_Irecv(&B_recv[0][0],matrix_size*matrix_size/numtasks,MPI_DOUBLE,
-		sourceId,MPI_ANY_TAG,MPI_COMM_WORLD,&recv);
-      commTime += rdtsc() - commStart;
-    }
-
-    mmStart = rdtsc();
-    // threads out the matrix multiplication
-    for(i = 0; i < numThreads; i++) 
-      if( pthread_create(&threads[i], NULL, &pthread_multiply, 
-                         (void *)&thread_args[i]) )
-		printf("Thread creation failed\n");
-    mmTime += rdtsc()- mmStart;
+  for(i = 0; i < numThreads; i++) 
+    if( pthread_create(&threads[i], NULL, &pthread_multiply, 
+                       (void *)&thread_args[i]) )
+      printf("Thread creation failed\n");
 
     // joins the threads back together
     for(i = 0; i < numThreads; i++) 
       if(pthread_join(threads[i], NULL))
 		printf("Thread joining failed\n");
 
-    commStart = rdtsc();
-    /* wait for isend/irecv to complete, as we can't *
-     * do the next set until these have finished     */
-    if ( block < numtasks - 1 ) {
-      MPI_Wait(&send,&stat);
-	  MPI_Wait(&recv,&stat);
-    }
-    commTime += rdtsc() - commStart;
-    
-    /* swaps pointer locations so that we can use B *
-     * for math and receive data on B_recv without  *
-     * having them interfere with each other.       */
-    tmp = B;         B = B_recv;         B_recv = tmp;
-    
-    ++block;
-  }
-  
   // calculates the times in seconds that we used.
   execTime = (rdtsc() - execTime)/clock_rate;
   commTime /= clock_rate;
