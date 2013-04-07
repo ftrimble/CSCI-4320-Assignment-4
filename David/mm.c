@@ -23,7 +23,8 @@ unsigned int matrix_slice;
 MPI_Request send, recv;
 MPI_Status stat;
 int taskid, numtasks;
-int commCycles = 0;
+int comm_cycles = 0;
+int *comp_cycles;
 int nextrank;
 int flag;
 
@@ -58,11 +59,12 @@ void * pthread_multiply(void * args) {
 			int comm_tmp = rdtsc();
 			MPI_Isend(&B[0][0], matrix_size * matrix_slice, MPI_DOUBLE, nextrank, 0, MPI_COMM_WORLD, &send);
 			MPI_Irecv(&R[0][0], matrix_size * matrix_slice, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &recv);
-			commCycles += rdtsc() - comm_tmp;
+			comm_cycles += rdtsc() - comm_tmp;
 		}
 
 		// Do the matrix multiply
 		// Currently too much work
+		comp_tmp = rdtsc();
 		int i_start = current_thread * (matrix_slice / num_threads);
 		int i_end = i_start + (matrix_slice / num_threads);
 		int i, j, k;
@@ -70,12 +72,13 @@ void * pthread_multiply(void * args) {
 			for(j = 0; j < matrix_slice; j++)
 				for(k = 0; k < matrix_size; k++)
 					C[i][j] += A[i][k] * B[k][j];
+		comp_cycles[current_thread] += (rdtsc() - comp_tmp);
 
 		printf("did some work!\n");
 
 		// Wait to terminate until the send and recv have finished
 		// Waiting not needed for last multiply
-		// commCycles only updated for 1 pthread
+		// comm_cycles only updated for 1 pthread
 		if(totalMults+1 < numtasks) {
 			if(current_thread == 0) {
 				int comm_tmp = rdtsc();
@@ -87,7 +90,7 @@ void * pthread_multiply(void * args) {
 				while(!flag)
 					MPI_Test(&recv, &flag, &stat);
 
-				commCycles += rdtsc() - comm_tmp;
+				comm_cycles += rdtsc() - comm_tmp;
 			} else {
 				flag = 0;
 				while(!flag)
@@ -103,7 +106,7 @@ void * pthread_multiply(void * args) {
 
 int main(int argc, char *argv[]) {
 	// To compute execution time
-	int program_runtime = rdtsc();
+	int cycle_start = rdtsc();
 
 	// Initialize MPI
 	MPI_Init(&argc, &argv);
@@ -151,6 +154,9 @@ int main(int argc, char *argv[]) {
 		for(j = 0; j < matrix_slice; j++)
 			B[i][j] = genrand_res53();
 
+	// Initialize comp_time
+	comp_time = (int *)calloc(num_threads * sizeof(int));
+
 	// Initialize pthread variables
 	num_threads = total_threads / numtasks;
 	threads = (pthread_t *)malloc(num_threads * sizeof(pthread_t));
@@ -169,11 +175,10 @@ int main(int argc, char *argv[]) {
 			printf("Could not join threads!\n");
 
 	// Get statistics about program
-	program_runtime = rdtsc() - program_runtime;
-	double runtime_seconds = (double)program_runtime / clock_rate;
-	double comm_seconds = (double)commCycles / clock_rate;
+	int total_cycles = rdtsc() - cycle_start;
+	double runtime_seconds = (double)total_cycles / clock_rate;
+	double comm_seconds = (double)comm_cycles / clock_rate;
 	printf("%g was runtime\n%g was commtime", runtime_seconds, comm_seconds);
 
 	MPI_Finalize();
 	return 1;
-}
