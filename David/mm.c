@@ -1,3 +1,4 @@
+// Had some weird memory errors while counting comp time, couldn't fix :(
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
@@ -23,8 +24,8 @@ unsigned int matrix_slice;
 MPI_Request send, recv;
 MPI_Status stat;
 int taskid, numtasks;
-long long comm_cycles = 0;
-long long *comp_cycles;
+//unsigned long long comm_cycles = 0;
+//unsigned long long *comp_cycles;
 int nextrank;
 int flag;
 
@@ -35,7 +36,7 @@ pthread_t *threads;
 // Debugging on Kratos, Actual job goes on Q
 #ifdef KRATOS
 unsigned int matrix_size = 1024;
-unsigned int total_threads = 16;
+unsigned int total_threads = 8;
 double clock_rate = 2666700000.0;
 #else
 unsigned int matrix_size = 1024;
@@ -56,15 +57,14 @@ void * pthread_multiply(void * args) {
 		// Only in 1 thread, post a send for matrix B and a recv for matrix R
 		// Communication does not need to happen during the last multiply
 		if(current_thread == 0 && totalMults+1 < numtasks) {
-			long long comm_tmp = rdtsc();
+			//unsigned long long comm_tmp = rdtsc();
 			MPI_Isend(&B[0][0], matrix_size * matrix_slice, MPI_DOUBLE, nextrank, 0, MPI_COMM_WORLD, &send);
 			MPI_Irecv(&R[0][0], matrix_size * matrix_slice, MPI_DOUBLE, MPI_ANY_SOURCE, MPI_ANY_TAG, MPI_COMM_WORLD, &recv);
-			comm_cycles += rdtsc() - comm_tmp;
+			//comm_cycles += rdtsc() - comm_tmp;
 		}
 
 		// Do the matrix multiply
-		// Currently too much work
-		long long comp_tmp = rdtsc();
+		//unsigned long long comp_tmp = rdtsc();
 		int i_start = current_thread * (matrix_slice / num_threads);
 		int i_end = i_start + (matrix_slice / num_threads);
 		int i, j, k;
@@ -72,40 +72,37 @@ void * pthread_multiply(void * args) {
 			for(j = 0; j < matrix_slice; j++)
 				for(k = 0; k < matrix_size; k++)
 					C[i][j] += A[i][k] * B[k][j];
-		comp_cycles[current_thread] += (rdtsc() - comp_tmp);
+		//comp_cycles[current_thread] += (rdtsc() - comp_tmp);
 
 		// Wait to terminate until the send and recv have finished
 		// Waiting not needed for last multiply
 		// comm_cycles only updated for 1 pthread
 		if(totalMults+1 < numtasks) {
-			if(current_thread == 0) {
-				long long comm_tmp = rdtsc();
+			//if(current_thread == 0) {
+				//unsigned long long comm_tmp = rdtsc();
 				
-				flag = 0;
-				while(!flag)
-					MPI_Test(&send, &flag, &stat);
-				flag = 0;
-				while(!flag)
-					MPI_Test(&recv, &flag, &stat);
+			//	flag = 0;
+			//	while(!flag)
+			//		MPI_Test(&send, &flag, &stat);
+			//	flag = 0;
+			//	while(!flag)
+			//		MPI_Test(&recv, &flag, &stat);
 
-				comm_cycles += rdtsc() - comm_tmp;
-			} else {
+			//	comm_cycles += rdtsc() - comm_tmp;
+			//} else {
 				flag = 0;
 				while(!flag)
 					MPI_Test(&send, &flag, &stat);
 				flag = 0;
 				while(!flag)
 					MPI_Test(&recv, &flag, &stat);
-			}
+			//}
 		}
 	}
 	return NULL;
 }
 
 int main(int argc, char *argv[]) {
-	// To compute execution time
-	long long cycle_start = rdtsc();
-
 	// Initialize MPI
 	MPI_Init(&argc, &argv);
 	MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
@@ -113,6 +110,9 @@ int main(int argc, char *argv[]) {
 	nextrank = taskid;
 	if(taskid == numtasks)
 		nextrank = 0;
+
+	// To compute execution time
+	unsigned long long cycle_start = rdtsc();
 
 	// Initialize Random Variable
 	rng_init_seeds[0] = taskid;
@@ -153,7 +153,7 @@ int main(int argc, char *argv[]) {
 			B[i][j] = genrand_res53();
 
 	// Initialize comp_time
-	comp_cycles = (long long *)calloc(num_threads, sizeof(int));
+	//comp_cycles = (unsigned long long *)calloc(num_threads, sizeof(unsigned long long));
 
 	// Initialize pthread variables
 	num_threads = total_threads / numtasks;
@@ -173,18 +173,18 @@ int main(int argc, char *argv[]) {
 			printf("Could not join threads!\n");
 	
 	// Aggregate comp time, which was split between multiple threads
-	for(i = 1; i< num_threads; i++)
-		comp_cycles[0] += comp_cycles[i];
+	//for(i = 1; i< num_threads; i++)
+		//comp_cycles[0] += comp_cycles[i];
 
 	// Convert all datapoints from clock cycles to seconds
-	long long total_cycles = rdtsc() - cycle_start;
+	unsigned long long total_cycles = rdtsc() - cycle_start;
 	double runtime_seconds = (double)total_cycles / clock_rate;
-	double comm_seconds = (double)comm_cycles / clock_rate;
-	double comp_seconds = (double)comp_cycles[0] / clock_rate;
+	//double comm_seconds = (double)comm_cycles / clock_rate;
+	//double comp_seconds = (double)comp_cycles[0] / clock_rate;
 
 	// Create entry points for aggregated data
-	double comp_max, comp_avg, comp_min, comp_sum;
-	double comm_max, comm_avg, comm_min, comm_sum;
+	//double comp_max, comp_avg, comp_min, comp_sum;
+	//double comm_max, comm_avg, comm_min, comm_sum;
 	double run_max, run_avg, run_min, run_sum;
 
 	// MPI Reduce All of the Statistics
@@ -193,21 +193,21 @@ int main(int argc, char *argv[]) {
 	MPI_Reduce(&runtime_seconds, &run_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
 	run_avg = run_sum / numtasks;
 	
-	MPI_Reduce(&comm_seconds, &comm_max, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-	MPI_Reduce(&comm_seconds, &comm_min, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
-	MPI_Reduce(&comm_seconds, &comm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-	comm_avg = comm_sum / numtasks;
+	//MPI_Reduce(&comm_seconds, &comm_max, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+	//MPI_Reduce(&comm_seconds, &comm_min, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
+	//MPI_Reduce(&comm_seconds, &comm_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+	//comm_avg = comm_sum / numtasks;
 
-	MPI_Reduce(&comp_seconds, &comp_max, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
-	MPI_Reduce(&comp_seconds, &comp_min, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
-	MPI_Reduce(&comp_seconds, &comp_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
-	comp_avg = comp_sum / numtasks;
+	//MPI_Reduce(&comp_seconds, &comp_max, 1, MPI_DOUBLE, MPI_MAX, 0, MPI_COMM_WORLD);
+	//MPI_Reduce(&comp_seconds, &comp_min, 1, MPI_DOUBLE, MPI_MIN, 0, MPI_COMM_WORLD);
+	//MPI_Reduce(&comp_seconds, &comp_sum, 1, MPI_DOUBLE, MPI_SUM, 0, MPI_COMM_WORLD);
+	//comp_avg = comp_sum / numtasks;
 
 	// Runtime: 	Max, Avg, Min
 	// Comm Time:	--
 	// Comp Time:	--
 	if(taskid == 0)
-		printf("%g %g %g\n%g %g %g\n%g %g %g\n", run_max, run_avg, run_min, comm_max, comm_avg, comm_min, comp_max, comp_min, comp_avg);
+		printf("%g %g %g\n", run_max, run_avg, run_min);
 
 	// Free all memory
 	free(A_raw);
@@ -218,9 +218,9 @@ int main(int argc, char *argv[]) {
 	free(B);
 	free(C);
 	free(R);
-	free(comp_cycles);
+	//free(comp_cycles);
 	free(threads);
 
 	MPI_Finalize();
-	return 1;
+	return 0;
 }
