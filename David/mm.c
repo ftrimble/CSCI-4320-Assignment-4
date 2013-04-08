@@ -27,7 +27,7 @@ int taskid, numtasks;
 //unsigned long long comm_cycles = 0;
 //unsigned long long *comp_cycles;
 int nextrank;
-int flag;
+int converge = 0;
 
 // Pthread Variables
 int num_threads; 
@@ -74,29 +74,21 @@ void * pthread_multiply(void * args) {
 					C[i][j] += A[i][k] * B[k][j];
 		//comp_cycles[current_thread] += (rdtsc() - comp_tmp);
 
-		// Wait to terminate until the send and recv have finished
 		// Waiting not needed for last multiply
 		// comm_cycles only updated for 1 pthread
 		if(totalMults+1 < numtasks) {
-			//if(current_thread == 0) {
+			if(current_thread == 0) {
 				//unsigned long long comm_tmp = rdtsc();
 				
-			//	flag = 0;
-			//	while(!flag)
-			//		MPI_Test(&send, &flag, &stat);
-			//	flag = 0;
-			//	while(!flag)
-			//		MPI_Test(&recv, &flag, &stat);
+				int waitVar = 0;
+				while(!waitVar)
+					MPI_Test(&send, &waitVar, &stat);
+				waitVar = 0;
+				while(!waitVar)
+					MPI_Test(&recv, &waitVar, &stat);
 
-			//	comm_cycles += rdtsc() - comm_tmp;
-			//} else {
-				flag = 0;
-				while(!flag)
-					MPI_Test(&send, &flag, &stat);
-				flag = 0;
-				while(!flag)
-					MPI_Test(&recv, &flag, &stat);
-			//}
+				//comm_cycles += rdtsc() - comm_tmp;
+			}
 		}
 	}
 	return NULL;
