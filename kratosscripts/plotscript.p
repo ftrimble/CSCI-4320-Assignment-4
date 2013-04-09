@@ -17,7 +17,7 @@ plot 'data/execAvg.dat' w l title 'Average', \
 ##### Matrix Size Plots #####
 #############################
 
-set output 'plots/exec.eps'
+set output 'plots/sizes.eps'
 set ylabel 'Execution Time (seconds)'
 set xlabel 'Matrix Size'
 set title 'Execution Time vs. Matrix Size'
