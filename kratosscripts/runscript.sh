@@ -1,8 +1,9 @@
 #!/bin/sh
 
 wd=$(dirname $0)
-echo $wd
 root=$wd/..
+
+rm $root/output/kratos/threads/* $root/output/kratos/size/*
 
 if [ -d "$root/output/bluegene" ]; then
     if [ ! -d "$root/plots" ]; then
@@ -19,7 +20,12 @@ if [ -d "$root/output/bluegene" ]; then
 	numthreads=`echo 8/$numprocs | bc`
         echo "Running program with $numprocs processors..."
         mpirun -np $numprocs $root/mm_threaded > \
-	    $root/output/kratos/$numthreads\by$numprocs.out
+	    $root/output/kratos/threads/$numthreads\by$numprocs.out
+    done
+
+    for i in `seq 1024 1024 4096`; do
+	echo "Running program on a matrix of size $i..."
+	mpirun -np 2 $root/mm_threaded $i > $root/output/kratos/size/$i.out
     done
 
     # gets the data for plotting

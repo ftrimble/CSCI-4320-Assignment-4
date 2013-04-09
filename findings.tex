@@ -30,48 +30,65 @@ will perform a smaller version of the matrix multiply (512 by 512) and regenerat
 the plots. Note that the x axis for the plots is on a $\log_2$ scale.\\
 
 Now we begin our analysis. Consider the plot of execution times in Figure 
-\ref{fig:exec}. One can see that there is an obvious benefit to using threads 
-rather than tasks wherever possible. Indeed, performance increases rather quickly
-as we increase the number of tasks per node. It looks like we can increase 
-performance by a factor of about 2 by switching from using MPI tasks to threads
-on a per-node basis. This is an impressive speedup, but it should also be a bit
-unsurprising. \\
+\ref{fig:exec}. One can see that there is an obvious performance decrease when we
+use too many threads. I believe that the Q is set up with 16 cores per node, each 
+with 4 threads (which can be used as MPI tasks as well), so it should be a bit 
+unsurprising that after we exceed 4 threads per node we start seeing a performance
+drop. It appears that the Q has a limited ability to share memory between cores on 
+a node, so it is likely that the overhead of having to do that far outweighs the
+benefits of performing the matrix multiply. \\
 
 If we recall our data from last time, almost the entirety of our 
 execution time was spent in the matrix-multiply, and communication was a 
 non-factor based on how quickly it proceeded. Using threading should reduce the 
 time spent on matrix multiplication; it is only a question of how successful the
-shared memory among the threads in our node are. Clearly, IBM has created another
-very successful communication network here, since we are able to see such
-phenomenal gains to performance. This must mean that the increased access times 
-for shared memory use are less of a factor than the much improved matrix multiply
-times, and we still do not exceed the ability of our communication network for
-transporting the B matrix between processes. \\
+shared memory among the threads in our node are. Clearly, the overhead for sharing
+memory on the Q around an entire node takes up more time than the actual matrix 
+multiplication! I am a bit surprised, however, that we did not see more significant
+performance gains for using the full 4 threads per core, as it would seem that such
+a configuration would be more than capable of reducing matrix multiplication time
+and tasking the network further. Interestingly, it may have been possible that, while
+communication overhead was a non-factor in the previous assignment, the division that
+we were using was exactly sufficient to task the network to capacity, so reducing
+matrix multiplication time by a factor of 4 would not receive the same gains to 
+overall time. \\
 
-\begin{figure}
+\begin{figure}[!ht]
   \centering
   \includegraphics[height=2in]{plots/exec.eps}
   \caption{Execution times for various threading configurations} \label{fig:exec}
 \end{figure}
 
-\begin{figure}
+\begin{figure}[!ht]
   \centering
   \includegraphics[height=2in]{plots/execK.eps}
   \caption{Execution times for various threading configurations on Kratos} 
 \end{figure}
 
+It is interesting to note the results that we see on Kratos; it appears that Kratos
+has a very similar processor setup to the Q, where having more than 4 threads per
+core is just not helpful. \\
+
 After analyzing the performance of various thread configurations, our next task
 was to test the success of our chosen arrangement by attempting to multiply the
-largest possible matrix with our given configuration. One can recall that in our
-last assignment, using 64 MPI tasks and no threads, it took most of the time 
-available to calculate the 8192 by 8192 matrix on one node. If you consider Figure
-\ref{fig:time}, you'll notice that we achieved a significant drop in execution 
-time by switching to the new 64 threads per node configuration, and were easily 
-able to multiply the 8192 by 8192 matrix in our 10 minute time limit.
+largest possible matrix with our given configuration. \\
+
+Unsurprisingly, we see a large increase in execution time as we increase the size
+of the matrix on Kratos. In the interests of speed of \texttt{make quick}, we have
+opted to not show the full ability of Kratos in ten minutes, but you can see that the
+4096 by 4096 matrix computes in under 30 seconds. Since Matrix Multiply is cubic by
+nature, one would assume that doubling the size to 8192 by 8192 would take 
+approximately 8 times as much, or about 4 minutes. Thus, we could complete an even
+larger matrix within our time constraints!
 
 \begin{figure}
   \includegraphics[height=2in]{plots/sizes.eps}
   \caption{Execution times for various matrix sizes} \label{fig:time}
+\end{figure}
+
+\begin{figure}
+  \includegraphics[height=2in]{plots/sizeK.eps}
+  \caption{Execution times for various matrix sizes on Kratos}
 \end{figure}
 
 

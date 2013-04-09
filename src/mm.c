@@ -86,6 +86,8 @@ int main(int argc, char *argv[]) {
     **tmp;                      // Swaps B and B_temp
   pthread_t *threads;           // Array of threads
 
+  if ( argc == 2 ) matrix_size = atoi(argv[1]);
+
   MPI_Init(&argc,&argv);
   MPI_Comm_rank(MPI_COMM_WORLD, &taskid);
   MPI_Comm_size(MPI_COMM_WORLD, &numtasks);
@@ -173,7 +175,7 @@ int main(int argc, char *argv[]) {
   if ( taskid == 0 ) {
     exec[0] /= numtasks;
     for ( i = 0; i < 3; ++i ) 
-      printf("%d %e\n\n",numThreads,exec[i]); 
+      printf("%d %e\n\n",(argc == 2 ? matrix_size : numThreads),exec[i]); 
   }
   
   /* frees up the memory allocated for our arrays. *
