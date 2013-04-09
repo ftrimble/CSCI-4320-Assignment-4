@@ -33,7 +33,7 @@ mm_threaded: $(SOURCES)
 
 findings.aux: findings.pdf
 findings.log: findings.pdf
-findings.pdf: bluegene/output
+findings.pdf: output/bluegene
 	$(GETDATA)
 
 blue:

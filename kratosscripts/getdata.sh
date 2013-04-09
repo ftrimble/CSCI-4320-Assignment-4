@@ -1,24 +1,30 @@
 #!/bin/bash
 
-wd=$(dirname "${BASH_SOURCE[0]}")
+wd=$(dirname $0)
 rootdir=$wd/..
 # raw output from blue gene
-execdir=$rootdir/bluegene/output/threads
-sizedir=$rootdir/bluegene/output/size
+execdir=$rootdir/output/bluegene/threads
+sizedir=$rootdir/output/bluegene/size
+kratosdir=$rootdir/output/kratos/
 # formatted output for gnuplot
-outdir=$rootdir/data
+outroot=$rootdir/data
 data=(execAvg execMin execMax 
-    sizes)
+    size)
 
-rm $outdir/*
+rm $outroot/kratos/* $outroot/bluegene/*
 
-for dir in $execdir $sizedir; do
+for dir in $execdir $sizedir $kratosdir; do
+    if [[ $dir == $kratosdir ]]; then outdir=$outroot/kratos
+    else outdir=$outroot/bluegene
+    fi
+
     for file in `ls -v $dir`; do
         extension=`echo $(basename "$file") | cut -d'.' -f2`
         if [[ $extension == "out" ]]; then
-            if [[ $dir == $execdir ]]; then i="0"
-            else i="3"
+            if [[ $dir == $sizedir ]]; then i=3
+            else i=0
             fi
+
 	    while read line; do
                 if [[ ! -z $line ]]; then
                     echo $line >> $outdir/${data[$i]}.dat
