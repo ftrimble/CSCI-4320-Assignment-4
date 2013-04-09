@@ -20,19 +20,53 @@
 \fancyhead[L]{CSCI 4320-01}
 \fancyhead[R]{\today}
 
+This document is intended to summarize the findings from using a 
+memory-constrained matrix multiplication on the Blue Gene/Q. The data here were 
+generated on Blue Gene/Q, using \texttt{make blue}. Since we only required one 
+node and the matrix multiply was fairly small (only 1024 by 1024), these runs
+can run through sbatch and completion very quickly. Using \texttt{make} here will
+regenerate the data, and using \texttt{make kratos} or \texttt{make quick} 
+will perform a smaller version of the matrix multiply (512 by 512) and regenerate
+the plots. Note that the x axis for the plots is on a $\log_2$ scale.\\
+
+Now we begin our analysis. Consider the plot of execution times in Figure 
+\ref{fig:exec}. One can see that there is an obvious benefit to using threads 
+rather than tasks wherever possible. Indeed, performance increases rather quickly
+as we increase the number of tasks per node. It looks like we can increase 
+performance by a factor of about 2 by switching from using MPI tasks to threads
+on a per-node basis. This is an impressive speedup, but it should also be a bit
+unsurprising. \\
+
+If we recall our data from last time, almost the entirety of our 
+execution time was spent in the matrix-multiply, and communication was a 
+non-factor based on how quickly it proceeded. Using threading should reduce the 
+time spent on matrix multiplication; it is only a question of how successful the
+shared memory among the threads in our node are. Clearly, IBM has created another
+very successful communication network here, since we are able to see such
+phenomenal gains to performance. This must mean that the increased access times 
+for shared memory use are less of a factor than the much improved matrix multiply
+times, and we still do not exceed the ability of our communication network for
+transporting the B matrix between processes. \\
+
 \begin{figure}
+  \centering
   \includegraphics[height=2in]{plots/exec.eps}
-  \caption{Execution times for various threading configurations}
+  \caption{Execution times for various threading configurations} \label{fig:exec}
 \end{figure}
 
-\begin{figure}
-  \includegraphics[height=2in]{plots/comm.eps}
-  \caption{Communication bandwidths for various threading configurations}
-\end{figure}
+After analyzing the performance of various thread configurations, our next task
+was to test the success of our chosen arrangement by attempting to multiply the
+largest possible matrix with our given configuration. One can recall that in our
+last assignment, using 64 MPI tasks and no threads, it took most of the time 
+available to calculate the 8192 by 8192 matrix on one node. If you consider Figure
+\ref{fig:time}, you'll notice that we achieved a significant drop in execution 
+time by switching to the new 64 threads per node configuration, and were easily 
+able to multiply the 8192 by 8192 matrix in our 10 minute time limit.
 
 \begin{figure}
-  \includegraphics[height=2in]{plots/mm.eps}
-  \caption{Matrix Multiply times for various threading configurations}
+  \includegraphics[height=2in]{plots/sizes.eps}
+  \caption{Execution times for various matrix sizes} \label{fig:time}
 \end{figure}
+
 
 \end{document}

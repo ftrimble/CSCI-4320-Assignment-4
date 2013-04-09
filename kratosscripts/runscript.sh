@@ -5,22 +5,28 @@ root=$wd/..
 
 if [ -d "$root/bluegene/output" ]; then
 
-	if [ ! -d "$root/plots" ]; then
-		mkdir $root/plots
-	fi
+    if [ ! -d "$root/plots" ]; then
+	mkdir $root/plots
+    fi
 
-	if [ ! -d "$root/data" ]; then
-		mkdir $root/data
-	fi
+    if [ ! -d "$root/data" ]; then
+	mkdir $root/data
+    fi
 
-	# gets the data for plotting
-	$wd/getdata.sh
+    for i in `seq 0 2`; do
+        numprocs=`echo 2^$i | bc`
+        echo "Running program with $numprocs processors..."
+        mpirun -np $numprocs $root/mm_threaded
+    done
 
-	# plots the data
-	echo "load '$wd/plotscript.p'" | gnuplot
+    # gets the data for plotting
+    $wd/getdata.sh
 
-	# refreshes the writeup
-	pdflatex $root/findings.tex
+    # plots the data
+    echo "load '$wd/plotscript.p'" | gnuplot
+
+    # refreshes the writeup
+    pdflatex $root/findings.tex
 fi
 
 
