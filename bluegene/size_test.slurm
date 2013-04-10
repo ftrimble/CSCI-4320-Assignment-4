@@ -7,9 +7,9 @@
 #SBATCH -O
 
 MM=mm_threaded
+numtasks=`echo 64*4 | bc`
 
 for i in `seq 12 16`; do
     matrixsize=`echo "2^$i" | bc`
-    numtasks=`echo "2^($i-2)" | bc`
     srun -o $matrixsize.out --nodes=64 --ntasks=$numtasks $MM $matrixsize
 done

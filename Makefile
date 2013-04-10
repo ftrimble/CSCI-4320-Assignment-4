@@ -22,7 +22,7 @@ REPORT=findings.aux \
        findings.log \
        findings.pdf
 GETDATA=kratosscripts/runscript.sh
-MAKEDATA=sbatch bluegene/batch.slurm
+MAKEDATA=sbatch bluegene/size_test.slurm; sbatch bluegene/thread_test.slurm
 
 all: $(REPORT)
 quick: kratos
@@ -44,4 +44,4 @@ debug:
 	mpicc $(DEBUG) $(KRATOS) $(SOURCES) -o $(OUTPUT)
 
 clean:
-	rm -r *~ $(OUTPUT) $(REPORT) data/ plots/
+	rm -r *~ $(OUTPUT) $(REPORT) data/ plots/ $(BLUEOUTDIR)/*
