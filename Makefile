@@ -44,4 +44,4 @@ debug:
 	mpicc $(DEBUG) $(KRATOS) $(SOURCES) -o $(OUTPUT)
 
 clean:
-	rm *~ $(OUTPUT) $(REPORT)
+	rm -r *~ $(OUTPUT) $(REPORT) data/ plots/
