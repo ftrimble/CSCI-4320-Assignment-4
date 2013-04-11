@@ -47,11 +47,11 @@ memory on the Q around an entire node takes up more time than the actual matrix
 multiplication! I am a bit surprised, however, that we did not see more significant
 performance gains for using the full 4 threads per core, as it would seem that such
 a configuration would be more than capable of reducing matrix multiplication time
-and tasking the network further. Interestingly, it may have been possible that, while
-communication overhead was a non-factor in the previous assignment, the division that
-we were using was exactly sufficient to task the network to capacity, so reducing
-matrix multiplication time by a factor of 4 would not receive the same gains to 
-overall time. \\
+without tasking the network further. Interestingly, it may have been possible that, 
+while communication overhead was a non-factor in the previous assignment, the 
+division that we were using was exactly sufficient to task the network to capacity,
+so reducing matrix multiplication time by a factor of 4 would not receive the same 
+gains to overall time. \\
 
 \begin{figure}[!ht]
   \centering
@@ -67,19 +67,30 @@ overall time. \\
 
 It is interesting to note the results that we see on Kratos; it appears that Kratos
 has a very similar processor setup to the Q, where having more than 4 threads per
-core is just not helpful. \\
+core is just not helpful. Note that we have seen some variation in these results,
+and since they are compiled on the spot, you may see something slightly different,
+but this is by far the most prevalent pattern we have seen.\\
 
 After analyzing the performance of various thread configurations, our next task
 was to test the success of our chosen arrangement by attempting to multiply the
 largest possible matrix with our given configuration. \\
 
+Refer to Figure \ref{fig:time} for the statistics on matrix size vs. time. Note that
+as it stands, Blue Gene had some issues computing the larger matrix sizes. 
+Nonetheless, you can see that we're taking about 16 seconds for our 16,384 matrix,
+so if we were to multiply that size by 4, we would get approximately a 16x increase 
+in execution time, for a total of 256 seconds, which is a little over 4 minutes! 
+Doubling again would not be possible in the ten minute time limit, so a 64k matrix
+is as big as we can get. That's pretty impressive for only ten minutes! \\
+
 Unsurprisingly, we see a large increase in execution time as we increase the size
 of the matrix on Kratos. In the interests of speed of \texttt{make quick}, we have
-opted to not show the full ability of Kratos in ten minutes, but you can see that the
-4096 by 4096 matrix computes in under 30 seconds. Since Matrix Multiply is cubic by
-nature, one would assume that doubling the size to 8192 by 8192 would take 
-approximately 8 times as much, or about 4 minutes. Thus, we could complete an even
-larger matrix within our time constraints!
+opted to not show the full ability of Kratos in ten minutes, but you can see that 
+the 4096 by 4096 matrix computes in under 30 seconds. Since Matrix Multiply is 
+cubic by nature, one would assume that doubling the size to 8192 by 8192 would 
+take approximately 8 times as much, or about 4 minutes. While we would not be able
+to compute a matrix double in size again within ten minutes, this does appear to 
+be faster than our original 8192 by 8192 matrix from assignment 3.
 
 \begin{figure}
   \includegraphics[height=2in]{plots/sizes.eps}

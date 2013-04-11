@@ -17,11 +17,11 @@ plot 'data/bluegene/execAvg.dat' w l title 'Average', \
 ##### Matrix Size Plots #####
 #############################
 
-# set output 'plots/sizes.eps'
-# set ylabel 'Execution Time (seconds)'
-# set xlabel 'Matrix Size'
-# set title 'Execution Time vs. Matrix Size'
-# plot 'data/sizes.dat' w l title 'Average times per node'
+set output 'plots/sizes.eps'
+set ylabel 'Execution Time (seconds)'
+set xlabel 'Matrix Size'
+set title 'Execution Time vs. Matrix Size'
+plot 'data/bluegene/size.dat' w l title 'Average times per node'
 
 ##########################
 ##########################
