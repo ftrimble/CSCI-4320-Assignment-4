@@ -39,8 +39,8 @@ unsigned int matrix_size = 512;
 unsigned int total_threads = 8;
 double clock_rate= 2666700000.0; 
 #else /* Using Blue Gene/Q */
-unsigned int matrix_size = 1024;
-unsigned int total_threads = 64;
+unsigned int matrix_size = 4096;
+unsigned int total_threads = 64*64;
 double clock_rate = 1600000000.0; 
 #endif
 
