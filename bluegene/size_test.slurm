@@ -7,7 +7,7 @@
 #SBATCH -O
 
 MM=mm_threaded
-numtasks=`echo 64*4 | bc`
+numtasks=`echo 64*8 | bc`
 
 for i in `seq 12 16`; do
     matrixsize=`echo "2^$i" | bc`

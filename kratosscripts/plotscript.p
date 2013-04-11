@@ -13,22 +13,6 @@ plot 'data/bluegene/execAvg.dat' w l title 'Average', \
     'data/bluegene/execMin.dat' w l title 'Minimum',  \
     'data/bluegene/execMax.dat' w l title 'Maximum'
 
-#############################
-##### Matrix Size Plots #####
-#############################
-
-set output 'plots/sizes.eps'
-set ylabel 'Execution Time (seconds)'
-set xlabel 'Matrix Size'
-set title 'Execution Time vs. Matrix Size'
-plot 'data/bluegene/size.dat' w l title 'Average times per node'
-
-##########################
-##########################
-###### Kratos Plots ######
-##########################
-##########################
-
 ################################
 ##### Execution Time plots #####
 ################################
@@ -42,11 +26,23 @@ plot 'data/kratos/execAvg.dat' w l title 'Average', \
     'data/kratos/execMax.dat' w l title 'Maximum'
 
 
+
+set logscale y 2
+
 #############################
 ##### Matrix Size Plots #####
 #############################
 
-set nologscale x
+set output 'plots/sizes.eps'
+set ylabel 'Execution Time (seconds)'
+set xlabel 'Matrix Size'
+set title 'Execution Time vs. Matrix Size'
+plot 'data/bluegene/size.dat' w l title 'Average times per node'
+
+#############################
+##### Matrix Size Plots #####
+#############################
+
 set output 'plots/sizeK.eps'
 set ylabel 'Execution Time (seconds)'
 set xlabel 'Matrix Size'
