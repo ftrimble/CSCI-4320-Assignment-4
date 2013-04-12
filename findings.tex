@@ -31,12 +31,12 @@ the plots. Note that the x axis for the plots is on a $\log_2$ scale.\\
 
 Now we begin our analysis. Consider the plot of execution times in Figure 
 \ref{fig:exec}. One can see that there is an obvious performance decrease when we
-use too many threads. I believe that the Q is set up with 16 cores per node, each 
-with 4 threads (which can be used as MPI tasks as well), so it should be a bit 
-unsurprising that after we exceed 4 threads per node we start seeing a performance
-drop. It appears that the Q has a limited ability to share memory between cores on 
-a node, so it is likely that the overhead of having to do that far outweighs the
-benefits of performing the matrix multiply. \\
+use too many threads. It appears that the Q has a limited ability to share memory 
+between cores on a node, so it is likely that the overhead of having to do that 
+far outweighs the benefits of performing the matrix multiply. I am a bit surprised,
+however, that 8 is the optimal configuration. The Q has 16 cores per node, each with
+4 threads, so it would seem that if the computational overhead of shared memory was
+a problem, it would become a problem at 8 nodes, not 16. \\
 
 If we recall our data from last time, almost the entirety of our 
 execution time was spent in the matrix-multiply, and communication was a 
@@ -85,8 +85,11 @@ Refer to Figure \ref{fig:time} for the statistics on matrix size vs. time. You c
 see that the blue gene was able to compute the 32768 by 32768 matrix in a little 
 over 4 minutes, but when we increased the size up to the full 64k matrix, we took
 almost half an hour! Clearly, while we do benefit from serious gains by using the
-optimal number of threads per node, it matters little in the face of such a massive
-matrix; most of our gains will come from the original parallelization. \\
+optimal number of threads per node, it does not solve everything. Indeed, this is
+a constraint that occurs with parallel programming in general: while we can speedup
+performance by enormous quantities, it is only ever by a constant factor. Thus, 
+intractable problems are still intractable problems, we simply have the advantage of
+being able to solve slightly larger versions of them. \\
 
 Unsurprisingly, we see a large increase in execution time as we increase the size
 of the matrix on Kratos. In the interests of speed of \texttt{make quick}, we have
